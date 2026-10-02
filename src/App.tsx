@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   ArrowRight,
-  ArrowUpRight,
   BookOpen,
   Check,
   CheckCircle2,
@@ -11,22 +10,23 @@ import {
   ExternalLink,
   FileText,
   Layers3,
-  Lightbulb,
-  Menu,
   MessageSquareText,
   RotateCcw,
   Search,
   ShieldCheck,
   Sparkles,
+  Sun,
+  Moon,
   Target,
   Trophy,
   X,
   type LucideIcon,
 } from 'lucide-react'
 import { flashcards, objectives, practiceQuestions } from './data/learningContent'
-import './App.css'
+import './FieldGuide.css'
 
 type Page = 'overview' | 'study' | 'practice' | 'flashcards' | 'progress'
+type Theme = 'light' | 'dark'
 type ProgressState = {
   completedLessonIds: string[]
   quizAttempts: number
@@ -35,6 +35,7 @@ type ProgressState = {
 }
 
 const progressKey = 'copilot-academy-progress-v1'
+const themeKey = 'copilot-academy-theme-v1'
 const emptyProgress: ProgressState = {
   completedLessonIds: [],
   quizAttempts: 0,
@@ -57,6 +58,14 @@ const objectiveIcons: Record<string, LucideIcon> = {
   prompts: MessageSquareText,
   productivity: Target,
   safeguards: FileText,
+}
+
+function loadTheme(): Theme {
+  try {
+    return localStorage.getItem(themeKey) === 'dark' ? 'dark' : 'light'
+  } catch {
+    return 'light'
+  }
 }
 
 function loadProgress(): ProgressState {
@@ -83,11 +92,11 @@ function loadProgress(): ProgressState {
 
 function App() {
   const [page, setPage] = useState<Page>('overview')
+  const [theme, setTheme] = useState<Theme>(loadTheme)
   const [activeObjectiveId, setActiveObjectiveId] = useState<string>(objectives[0].id)
   const [expandedLessonId, setExpandedLessonId] = useState<string | null>(null)
   const [query, setQuery] = useState('')
   const searchRef = useRef<HTMLInputElement>(null)
-  const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const [progress, setProgress] = useState<ProgressState>(loadProgress)
   const [questionIndex, setQuestionIndex] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
@@ -98,6 +107,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem(progressKey, JSON.stringify(progress))
   }, [progress])
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(themeKey, theme)
+    } catch {
+      return
+    }
+  }, [theme])
 
   useEffect(() => {
     function focusSearch(event: KeyboardEvent) {
@@ -129,11 +146,17 @@ function App() {
   const visibleLessons = activeObjective.lessons.filter((lesson) =>
     `${lesson.title} ${lesson.summary}`.toLowerCase().includes(normalizedQuery),
   )
+  const nextObjective = objectives.find((objective) =>
+    objective.lessons.some((lesson) => !progress.completedLessonIds.includes(lesson.id)),
+  ) ?? objectives[0]
+  const nextLesson = nextObjective.lessons.find((lesson) =>
+    !progress.completedLessonIds.includes(lesson.id),
+  ) ?? nextObjective.lessons[0]
 
   function navigate(nextPage: Page) {
     setPage(nextPage)
-    setMobileNavOpen(false)
     setQuery('')
+    window.scrollTo(0, 0)
   }
 
   function openObjective(objectiveId: string) {
@@ -182,107 +205,86 @@ function App() {
     localStorage.removeItem(progressKey)
   }
 
-  const pageTitle = navigation.find((item) => item.id === page)?.label ?? 'Overview'
-
   return (
-    <div className="app-shell">
-      {mobileNavOpen && <button className="nav-scrim" aria-label="Close navigation" onClick={() => setMobileNavOpen(false)} />}
-      <aside className={`sidebar ${mobileNavOpen ? 'sidebar-open' : ''}`}>
+    <div className={`app-shell theme-${theme}`}>
+      <div className="workspace">
+        <header className="topbar">
         <a className="brand" href="#overview" onClick={(event) => { event.preventDefault(); navigate('overview') }}>
           <span className="brand-mark"><Sparkles size={19} strokeWidth={2.3} /></span>
           <span>copilot<span className="brand-accent">academy</span></span>
         </a>
-        <div className="sidebar-label">YOUR LEARNING SPACE</div>
         <nav className="primary-nav" aria-label="Main navigation">
           {navigation.map(({ id, label, icon: Icon }) => (
             <button key={id} className={`nav-item ${page === id ? 'nav-item-active' : ''}`} onClick={() => navigate(id)} aria-current={page === id ? 'page' : undefined}>
-              <Icon size={18} strokeWidth={1.9} />
+              <Icon size={16} strokeWidth={1.9} />
               <span>{label}</span>
               {id === 'practice' && <span className="nav-count">{practiceQuestions.length}</span>}
             </button>
           ))}
         </nav>
-        <div className="sidebar-spacer" />
-        <div className="sidebar-progress">
-          <div className="sidebar-progress-top"><span>Learning path</span><span>{completion}%</span></div>
-          <div className="sidebar-progress-track"><span style={{ width: `${completion}%` }} /></div>
-          <p>{completedCount} of {totalLessons} topics explored</p>
-        </div>
-        <a className="sidebar-resource" href="https://docs.github.com/en/copilot" target="_blank" rel="noreferrer">
-          <span><span className="resource-kicker">REFERENCE LIBRARY</span><strong>GitHub Copilot docs</strong></span>
-          <ExternalLink size={15} />
-        </a>
-        <div className="sidebar-footnote">Independent community resource<br />Not affiliated with GitHub</div>
-      </aside>
-
-      <div className="workspace">
-        <header className="topbar">
-          <button className="icon-button mobile-menu" aria-label="Open navigation" onClick={() => setMobileNavOpen(true)}><Menu size={20} /></button>
-          <div className="breadcrumb"><span>Academy</span><ChevronRight size={14} /><strong>{pageTitle}</strong></div>
           <label className="search-box">
             <Search size={17} />
             <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search topics" aria-label="Search topics" />
             {query && <button type="button" className="clear-search" aria-label="Clear search" onClick={() => setQuery('')}><X size={15} /></button>}
             {!query && <kbd>/</kbd>}
           </label>
-          <button className="top-progress" onClick={() => navigate('progress')}><span className="top-progress-icon"><Trophy size={16} /></span><span>Progress</span></button>
+          <button className="theme-toggle" aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`} onClick={() => setTheme((current) => current === 'light' ? 'dark' : 'light')}>
+            {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
+          </button>
+          <button className="top-progress" aria-label="View progress summary" onClick={() => navigate('progress')}><span className="top-progress-icon"><Trophy size={16} /></span><span>Progress</span></button>
         </header>
 
         <main className="page-content">
           {page === 'overview' && (
             <>
-              <section className="welcome-row">
-                <div>
-                  <div className="eyebrow"><span className="eyebrow-dot" /> GH-300 LEARNING PATH</div>
-                  <h1>Build your Copilot fluency.</h1>
-                  <p className="welcome-copy">A practical, community-made guide to working thoughtfully with AI-assisted development.</p>
+              <section className="field-hero">
+                <div className="field-hero-copy">
+                  <div className="eyebrow"><span className="eyebrow-dot" /> COMMUNITY FIELD GUIDE <span className="hero-edition">GH-300 / 2026</span></div>
+                  <h1>GitHub Copilot,<br />understood in practice.</h1>
+                  <p>A practical guide to using AI-assisted development with judgment, context, and care.</p>
                 </div>
-                <div className="welcome-stat"><div className="stat-icon"><BookOpen size={19} /></div><div><strong>{completedCount}<span>/{totalLessons}</span></strong><small>topics explored</small></div></div>
+                <div className="hero-progress">
+                  <span className="section-kicker">YOUR FIELD GUIDE</span>
+                  <div className="hero-progress-numbers"><strong>{String(completion).padStart(2, '0')}<small>%</small></strong><span>{completedCount} / {totalLessons}<br />topics explored</span></div>
+                  <div className="progress-track"><span style={{ width: `${completion}%` }} /></div>
+                </div>
               </section>
 
-              <section className="overview-progress" aria-label="Overall learning progress">
-                <div className="progress-text"><strong>Your learning path</strong><span>{completion}% complete</span></div>
-                <div className="progress-track"><span style={{ width: `${completion}%` }} /></div>
+              <section className="continue-band" aria-label="Continue studying">
+                <span className="continue-index">CONTINUE YOUR STUDY <span>/{String(objectives.indexOf(nextObjective) + 1).padStart(2, '0')}</span></span>
+                <div className="continue-copy"><strong>{nextLesson.title}</strong><span>{nextObjective.title} <span className="continue-dot">·</span> {nextLesson.minutes} min</span></div>
+                <button className="text-action" onClick={() => openObjective(nextObjective.id)}>Resume <ArrowRight size={17} /></button>
               </section>
 
-              <div className="section-heading objective-heading">
-                <div><span className="section-kicker">THE SYLLABUS</span><h2>Six areas. One confident workflow.</h2></div>
-                <span className="section-meta">{filteredObjectives.length} objectives <ArrowDownRightIcon /></span>
+              <div className="syllabus-heading">
+                <div><span className="section-kicker">THE SYLLABUS <span>/ 06 MODULES</span></span><h2>Start anywhere. Build a practice.</h2></div>
+                <span>{filteredObjectives.length} areas <ArrowRight size={14} /></span>
               </div>
 
-              <div className="overview-grid">
-                <section className="objective-grid" aria-label="Learning objectives">
-                  {filteredObjectives.map((objective, index) => {
-                    const Icon = objectiveIcons[objective.id] ?? FileText
+              <div className="syllabus-layout">
+                <section className="syllabus-list" aria-label="Learning objectives">
+                  {filteredObjectives.map((objective) => {
+                    const index = objectives.indexOf(objective)
                     const completed = objective.lessons.filter((lesson) => progress.completedLessonIds.includes(lesson.id)).length
                     const percentage = Math.round((completed / objective.lessons.length) * 100)
-                    return (
-                      <article className={`objective-card objective-${objective.tone}`} key={objective.id} style={{ animationDelay: `${index * 45}ms` }}>
-                        <div className="objective-card-top"><span className="objective-icon"><Icon size={18} strokeWidth={1.9} /></span><span className="objective-number">0{index + 1}</span></div>
-                        <h3>{objective.title}</h3>
-                        <p>{objective.description}</p>
-                        <div className="objective-card-bottom"><span>{objective.lessons.length} topics <span className="meta-divider">·</span> {completed} done</span><span className="mini-progress"><span style={{ width: `${percentage}%` }} /></span></div>
-                        <button className="card-link" onClick={() => openObjective(objective.id)}>Open objective <ArrowRight size={15} /></button>
-                      </article>
-                    )
+                    return <button className="syllabus-row" key={objective.id} onClick={() => openObjective(objective.id)}>
+                      <span className="syllabus-number">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="syllabus-main"><strong>{objective.title}</strong><span>{objective.description}</span></span>
+                      <span className="syllabus-topics">{String(objective.lessons.length).padStart(2, '0')} TOPICS</span>
+                      <span className="syllabus-completion"><span>{completed}/{objective.lessons.length}</span><span className="row-track"><span style={{ width: `${percentage}%` }} /></span></span>
+                      <ArrowRight className="syllabus-arrow" size={17} />
+                    </button>
                   })}
                   {filteredObjectives.length === 0 && <div className="empty-state"><Search size={21} /><strong>No matching objectives</strong><span>Try a different search term.</span></div>}
                 </section>
 
-                <aside className="overview-rail">
-                  <section className="practice-promo">
-                    <div className="promo-top"><span className="promo-icon"><Lightbulb size={18} /></span><span className="promo-label">QUICK PRACTICE</span></div>
-                    <h3>Put the concepts to work.</h3>
-                    <p>Try original scenario questions with explanations, built for learning rather than memorizing.</p>
-                    <div className="promo-meta"><span><CircleHelpIcon /> {practiceQuestions.length} questions</span><span><Clock3 size={14} /> No timer</span></div>
-                    <button className="promo-button" onClick={() => navigate('practice')}>Start a practice set <ArrowRight size={16} /></button>
-                  </section>
-                  <section className="flashcard-promo">
-                    <div className="flashcard-graphic"><span className="flashcard-back" /><span className="flashcard-front"><Sparkles size={20} /></span></div>
-                    <div className="flashcard-promo-copy"><span className="section-kicker">A LITTLE RECALL</span><strong>Make the key ideas stick.</strong><span>{flashcards.length} cards to review</span></div>
-                    <button className="round-arrow" aria-label="Open flashcards" onClick={() => navigate('flashcards')}><ArrowUpRight size={18} /></button>
-                  </section>
-                  <div className="source-note"><ShieldCheck size={16} /><p>Original learning material, grounded in <a href="https://docs.github.com/en/copilot" target="_blank" rel="noreferrer">public documentation</a>.</p></div>
+                <aside className="drill-rail">
+                  <span className="drill-index">FIELD NOTE <span>01 / {String(practiceQuestions.length).padStart(2, '0')}</span></span>
+                  <span className="drill-kicker"><Target size={15} /> DAILY DRILL</span>
+                  <h3>Think it through.</h3>
+                  <p>{practiceQuestions[0].prompt}</p>
+                  <button className="text-action" onClick={() => { setQuestionIndex(0); setSelectedAnswer(null); setAnswerSubmitted(false); navigate('practice') }}>Try this question <ArrowRight size={17} /></button>
+                  <div className="drill-source"><ShieldCheck size={15} /><span>Original practice, based on public documentation.</span></div>
                 </aside>
               </div>
             </>
@@ -326,6 +328,17 @@ function App() {
                     {visibleLessons.length === 0 && <div className="empty-state"><Search size={21} /><strong>No matching topics</strong><span>Try another search or objective.</span></div>}
                   </div>
                 </section>
+                <aside className="reference-rail">
+                  <span className="section-kicker">REFERENCE</span>
+                  <ShieldCheck size={20} className="reference-icon" />
+                  <h3>Go to the source.</h3>
+                  <p>Check current product behavior against GitHub’s public Copilot documentation.</p>
+                  <a href="https://docs.github.com/en/copilot" target="_blank" rel="noreferrer">GitHub Copilot docs <ExternalLink size={14} /></a>
+                  <div className="reference-divider" />
+                  <span className="section-kicker">KEEP GOING</span>
+                  <p>Use a short scenario to test what you’ve just read.</p>
+                  <button className="text-action" onClick={() => navigate('practice')}>Open practice <ArrowRight size={17} /></button>
+                </aside>
               </div>
             </>
           )}
@@ -410,14 +423,6 @@ function App() {
       </div>
     </div>
   )
-}
-
-function ArrowDownRightIcon() {
-  return <ArrowRight size={15} className="meta-arrow" />
-}
-
-function CircleHelpIcon() {
-  return <span className="circle-help">?</span>
 }
 
 export default App
