@@ -39,6 +39,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .top-progress { display: flex; align-items: center; gap: 7px; padding: 6px 0 6px 2px; color: var(--ink); border: 0; background: transparent; font-size: 11px; font-weight: 650; white-space: nowrap; cursor: pointer; }
 .top-progress:hover { color: #687b0d; }
 .top-progress-icon { display: grid; place-items: center; color: var(--ink); }
+.theme-toggle { width: 34px; height: 34px; display: grid; place-items: center; flex: 0 0 34px; padding: 0; color: var(--ink); border: 1px solid var(--line); border-radius: 2px; background: transparent; cursor: pointer; }
+.theme-toggle:hover { background: var(--acid); }
 .page-content { width: min(100%, 1360px); flex: 1; box-sizing: border-box; margin: 0 auto; padding: 44px 40px 58px; }
 .eyebrow,.section-kicker { color: #767b70; font-size: 9px; font-weight: 600; letter-spacing: 1.1px; }
 .eyebrow { display: flex; align-items: center; gap: 8px; }
@@ -246,6 +248,14 @@ h1,h2,h3,p { margin: 0; }
   .reference-rail > a { margin: 0; }
   .reference-rail .text-action { margin: 0; }
 }
+@media (max-width: 950px) {
+  .topbar { gap: 9px; }
+  .primary-nav { gap: 0; margin-left: 0; }
+  .nav-item { padding-inline: 5px; font-size: 9px; }
+  .search-box { width: 130px; }
+  .top-progress > span:last-child { display: none; }
+  .top-progress-icon { width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 2px; }
+}
 @media (max-width: 850px) {
   .topbar { gap: 10px; padding-inline: 22px; }
   .brand { font-size: 14px; }
@@ -261,13 +271,14 @@ h1,h2,h3,p { margin: 0; }
   .drill-rail { padding-left: 16px; }
 }
 @media (max-width: 700px) {
-  .topbar { display: grid; grid-template-columns: minmax(0,1fr) auto auto; grid-template-areas: 'brand search progress' 'nav nav nav'; gap: 0 10px; min-height: 100px; padding: 9px 15px 0; }
+  .topbar { display: grid; grid-template-columns: minmax(0,1fr) auto auto auto; grid-template-areas: 'brand search theme progress' 'nav nav nav nav'; gap: 0 8px; min-height: 100px; padding: 9px 15px 0; }
   .brand { grid-area: brand; }
   .primary-nav { grid-area: nav; width: 100%; height: 43px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
   .primary-nav::-webkit-scrollbar { display: none; }
   .nav-item { flex: 0 0 auto; padding: 0 10px; font-size: 10px; }
   .search-box { grid-area: search; width: clamp(112px, 34vw, 190px); height: 32px; margin: 0; }
   .search-box kbd { display: none; }
+  .theme-toggle { grid-area: theme; width: 31px; height: 31px; flex-basis: 31px; }
   .top-progress { grid-area: progress; }
   .top-progress > span:last-child { display: none; }
   .top-progress-icon { width: 31px; height: 31px; border: 1px solid var(--line); border-radius: 2px; }
@@ -339,6 +350,11 @@ h1,h2,h3,p { margin: 0; }
   .page-footer { align-items: flex-start; flex-direction: column; gap: 7px; padding: 13px 17px 16px; }
 }
 @media (max-width: 420px) {
+  .topbar { gap: 0 5px; padding-inline: 10px; }
+  .brand { gap: 6px; font-size: 13px; }
+  .brand-mark { width: 24px; height: 24px; }
+  .search-box { width: clamp(88px, 29vw, 120px); padding-inline: 7px; }
+  .theme-toggle,.top-progress-icon { width: 28px; height: 28px; }
   .field-hero { grid-template-columns: minmax(0,1fr) 88px; gap: 9px; }
   .field-hero h1 { font-size: 27px; }
   .hero-progress { padding-left: 8px; }
@@ -359,6 +375,81 @@ h1,h2,h3,p { margin: 0; }
   .progress-row-count { font-size: 8px; }
   .progress-detail-footer { padding-inline: 2px; }
 }
+
+.theme-dark {
+  --paper: #181b16;
+  --ink: #eef0e7;
+  --muted: #b1b6aa;
+  --line: #3b4036;
+  --white: #22261f;
+  --signal: #ef8b6a;
+  --acid: #cce84f;
+  color: var(--ink);
+  background: var(--paper);
+  color-scheme: dark;
+}
+.theme-dark .topbar { border-color: #383d34; background: rgb(24 27 22 / 96%); }
+.theme-dark .brand-accent { color: #a7ad9e; }
+.theme-dark .nav-item { color: #b4b9ad; }
+.theme-dark .nav-item:hover,.theme-dark .nav-item-active { color: var(--ink); }
+.theme-dark .nav-item-active { border-bottom-color: var(--acid); }
+.theme-dark .search-box { color: #a6ab9f; border-color: #41463d; background: #22261f; }
+.theme-dark .search-box:focus-within { border-color: #a8c43c; box-shadow: 0 0 0 2px rgb(204 232 79 / 18%); }
+.theme-dark .search-box input { color: var(--ink); }
+.theme-dark .search-box kbd { color: #b0b5a8; border-color: #454a40; background: #2b2f27; }
+.theme-dark .top-progress,.theme-dark .top-progress-icon,.theme-dark .theme-toggle { color: var(--ink); }
+.theme-dark .theme-toggle,.theme-dark .top-progress-icon { border-color: #44493f; }
+.theme-dark .theme-toggle:hover { color: #171a14; }
+.theme-dark .eyebrow,.theme-dark .section-kicker,.theme-dark .hero-edition,.theme-dark .continue-index,.theme-dark .syllabus-topics,.theme-dark .syllabus-completion,.theme-dark .drill-index { color: #a5aa9d; }
+.theme-dark .hero-edition { border-color: #484d42; }
+.theme-dark .field-hero h1,.theme-dark .hero-progress-numbers > strong,.theme-dark .continue-copy strong,.theme-dark .syllabus-heading h2,.theme-dark .syllabus-main strong,.theme-dark .drill-rail h3,.theme-dark .page-intro h1,.theme-dark .lesson-heading h2,.theme-dark .lesson-title-line h3,.theme-dark .quiz-card > h2,.theme-dark .flashcard-side-note > strong,.theme-dark .quiz-aside > strong,.theme-dark .progress-detail-heading h2 { color: var(--ink); }
+.theme-dark .field-hero-copy > p,.theme-dark .hero-progress-numbers > span,.theme-dark .continue-copy > span,.theme-dark .syllabus-heading > span,.theme-dark .syllabus-main > span,.theme-dark .drill-rail > p,.theme-dark .page-intro > p,.theme-dark .lesson-heading > p,.theme-dark .lesson-copy > p,.theme-dark .lesson-details > p,.theme-dark .reference-rail > p,.theme-dark .quiz-aside > p,.theme-dark .flashcard-side-note > p { color: #b3b8ac; }
+.theme-dark .field-hero,.theme-dark .continue-band,.theme-dark .syllabus-list,.theme-dark .syllabus-row,.theme-dark .drill-source,.theme-dark .lesson-heading,.theme-dark .lesson-row,.theme-dark .lesson-details,.theme-dark .reference-divider,.theme-dark .reference-rail,.theme-dark .quiz-footer,.theme-dark .progress-summary-grid,.theme-dark .progress-detail,.theme-dark .progress-detail-heading,.theme-dark .objective-progress-row,.theme-dark .card-progress-list,.theme-dark .card-progress-item,.theme-dark .page-footer { border-color: #3b4036; }
+.theme-dark .syllabus-row:hover,.theme-dark .objective-progress-row:hover { background: #252a21; }
+.theme-dark .syllabus-number,.theme-dark .syllabus-arrow,.theme-dark .drill-source,.theme-dark .lesson-list-header,.theme-dark .lesson-list-header span,.theme-dark .lesson-duration,.theme-dark .lesson-detail-toggle,.theme-dark .reference-rail .section-kicker,.theme-dark .quiz-card-top,.theme-dark .quiz-of,.theme-dark .question-type,.theme-dark .quiz-footer > span,.theme-dark .flashcard-toolbar,.theme-dark .flashcard-toolbar span span,.theme-dark .flashcard-hint,.theme-dark .summary-stat-label,.theme-dark .summary-stat-foot,.theme-dark .progress-detail-heading > span,.theme-dark .progress-row-count,.theme-dark .progress-detail-footer,.theme-dark .page-footer { color: #a7ad9f; }
+.theme-dark .drill-rail,.theme-dark .reference-rail,.theme-dark .quiz-aside,.theme-dark .flashcard-side-note { border-color: #454a3f; }
+.theme-dark .drill-rail .text-action,.theme-dark .reference-rail > a,.theme-dark .reference-rail .text-action,.theme-dark .page-footer a { color: #d2e875; }
+.theme-dark .lesson-check { color: #d1d5ca; border-color: #60665a; }
+.theme-dark .lesson-complete .lesson-check { color: #1c2116; border-color: var(--acid); background: var(--acid); }
+.theme-dark .lesson-detail-toggle:hover { color: #1c2116; }
+.theme-dark .lesson-example { border-color: var(--acid); background: #2a3020; }
+.theme-dark .lesson-example > span { color: #aeb59b; }
+.theme-dark .lesson-example code { color: #e2e7d4; }
+.theme-dark .selector-item { color: #b6bbaf; border-color: #3b4036; }
+.theme-dark .selector-active { color: var(--ink); }
+.theme-dark .selector-active .selector-title { text-decoration-color: var(--signal); }
+.theme-dark .selector-index,.theme-dark .selector-count { color: #a0a699; }
+.theme-dark .lesson-heading > a { color: #d4e977; text-decoration-color: #83962d; }
+.theme-dark .answer-option { color: #d2d6cb; border-color: #454a40; }
+.theme-dark .question-type { color: #d1d6c8; background: #343a2c; }
+.theme-dark .answer-option:hover:not(.answer-correct):not(.answer-wrong) { border-color: #929d59; background: #292e23; }
+.theme-dark .answer-letter { color: #c1c6b8; border-color: #596052; }
+.theme-dark .answer-selected { color: #eef0e7; border-color: #a6be43; background: #303722; }
+.theme-dark .answer-selected .answer-letter { color: #1c2116; border-color: var(--acid); background: var(--acid); }
+.theme-dark .answer-correct { color: #273019; border-color: #a9c54a; background: #dce9a8; }
+.theme-dark .answer-wrong { color: #54291d; border-color: #e39474; background: #f2c5af; }
+.theme-dark .answer-explanation { border-color: var(--acid); background: #2a3020; }
+.theme-dark .answer-explanation strong { color: #d7ea7a; }
+.theme-dark .answer-explanation p { color: #d4d8c9; }
+.theme-dark .explanation-wrong { border-color: var(--signal); background: #38271f; }
+.theme-dark .explanation-wrong strong { color: #ffad8e; }
+.theme-dark .primary-button { color: #202519; }
+.theme-dark .primary-button:disabled { color: #959a8c; background: #373c32; }
+.theme-dark .secondary-button { color: #d3d7cc; border-color: #555b4e; }
+.theme-dark .secondary-button:hover { background: #2b2f27; }
+.theme-dark .aside-icon { color: #202519; }
+.theme-dark .aside-stat,.theme-dark .aside-stat strong { color: #d9ddd1; }
+.theme-dark .study-flashcard { color: var(--ink); border-color: #454a40; background: #22261f; }
+.theme-dark .study-flashcard:hover { background: #292e23; }
+.theme-dark .study-flashcard-flipped { background: #303722; }
+.theme-dark .study-flashcard > strong { color: var(--ink); }
+.theme-dark .card-progress-item { color: #c1c6b9; }
+.theme-dark .progress-row-icon,.theme-dark .tone-green,.theme-dark .tone-coral,.theme-dark .tone-blue,.theme-dark .tone-yellow,.theme-dark .tone-mint,.theme-dark .tone-violet { color: #1c2116; background: var(--acid); }
+.theme-dark .progress-row-title strong { color: #e2e5db; }
+.theme-dark .reset-button { color: #ff9c7c; }
+.theme-dark .stat-bullet { background: var(--acid); }
+
+html:has(.theme-dark),body:has(.theme-dark) { background: #181b16; }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

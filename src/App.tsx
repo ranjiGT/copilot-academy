@@ -15,6 +15,8 @@ import {
   Search,
   ShieldCheck,
   Sparkles,
+  Sun,
+  Moon,
   Target,
   Trophy,
   X,
@@ -24,6 +26,7 @@ import { flashcards, objectives, practiceQuestions } from './data/learningConten
 import './FieldGuide.css'
 
 type Page = 'overview' | 'study' | 'practice' | 'flashcards' | 'progress'
+type Theme = 'light' | 'dark'
 type ProgressState = {
   completedLessonIds: string[]
   quizAttempts: number
@@ -32,6 +35,7 @@ type ProgressState = {
 }
 
 const progressKey = 'copilot-academy-progress-v1'
+const themeKey = 'copilot-academy-theme-v1'
 const emptyProgress: ProgressState = {
   completedLessonIds: [],
   quizAttempts: 0,
@@ -54,6 +58,14 @@ const objectiveIcons: Record<string, LucideIcon> = {
   prompts: MessageSquareText,
   productivity: Target,
   safeguards: FileText,
+}
+
+function loadTheme(): Theme {
+  try {
+    return localStorage.getItem(themeKey) === 'dark' ? 'dark' : 'light'
+  } catch {
+    return 'light'
+  }
 }
 
 function loadProgress(): ProgressState {
@@ -80,6 +92,7 @@ function loadProgress(): ProgressState {
 
 function App() {
   const [page, setPage] = useState<Page>('overview')
+  const [theme, setTheme] = useState<Theme>(loadTheme)
   const [activeObjectiveId, setActiveObjectiveId] = useState<string>(objectives[0].id)
   const [expandedLessonId, setExpandedLessonId] = useState<string | null>(null)
   const [query, setQuery] = useState('')
@@ -94,6 +107,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem(progressKey, JSON.stringify(progress))
   }, [progress])
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(themeKey, theme)
+    } catch {
+      return
+    }
+  }, [theme])
 
   useEffect(() => {
     function focusSearch(event: KeyboardEvent) {
@@ -185,7 +206,7 @@ function App() {
   }
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell theme-${theme}`}>
       <div className="workspace">
         <header className="topbar">
         <a className="brand" href="#overview" onClick={(event) => { event.preventDefault(); navigate('overview') }}>
@@ -207,6 +228,9 @@ function App() {
             {query && <button type="button" className="clear-search" aria-label="Clear search" onClick={() => setQuery('')}><X size={15} /></button>}
             {!query && <kbd>/</kbd>}
           </label>
+          <button className="theme-toggle" aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`} onClick={() => setTheme((current) => current === 'light' ? 'dark' : 'light')}>
+            {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
+          </button>
           <button className="top-progress" aria-label="View progress summary" onClick={() => navigate('progress')}><span className="top-progress-icon"><Trophy size={16} /></span><span>Progress</span></button>
         </header>
 
