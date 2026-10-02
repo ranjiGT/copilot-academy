@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --forest: #193d32;
+  --green: #316c50;
+  --coral: #ed704f;
+  --ink: #21342b;
+  --muted: #718078;
+  --line: #e2eae5;
+  --page: #f4f7f5;
+  --body: 'DM Sans', 'Avenir Next', sans-serif;
+  --display: 'Space Grotesk', 'Avenir Next', sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  color: var(--ink);
+  background: var(--page);
+  font-family: var(--body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+}
+
+* { box-sizing: border-box; }
+
+html { min-width: 320px; min-height: 100%; background: var(--page); }
+body { min-width: 320px; min-height: 100vh; margin: 0; }
+button, input { font: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid #4e9b70; outline-offset: 3px; }
+::selection { color: #173b2f; background: #cfe8d7; }
+
+#root { min-height: 100vh; }
