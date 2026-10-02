@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   ArrowRight,
+  Bot,
   BookOpen,
   Check,
   CheckCircle2,
@@ -9,6 +10,7 @@ import {
   Compass,
   ExternalLink,
   FileText,
+  Files,
   Layers3,
   MessageSquareText,
   RotateCcw,
@@ -210,7 +212,7 @@ function App() {
       <div className="workspace">
         <header className="topbar">
         <a className="brand" href="#overview" onClick={(event) => { event.preventDefault(); navigate('overview') }}>
-          <span className="brand-mark"><Sparkles size={19} strokeWidth={2.3} /></span>
+          <span className="brand-mark"><Bot size={19} strokeWidth={2.1} /></span>
           <span>copilot<span className="brand-accent">academy</span></span>
         </a>
         <nav className="primary-nav" aria-label="Main navigation">
@@ -242,6 +244,13 @@ function App() {
                   <div className="eyebrow"><span className="eyebrow-dot" /> COMMUNITY FIELD GUIDE <span className="hero-edition">GH-300 / 2026</span></div>
                   <h1>GitHub Copilot,<br />understood in practice.</h1>
                   <p>A practical guide to using AI-assisted development with judgment, context, and care.</p>
+                  <div className="hero-workflow" role="img" aria-label="A development workflow from project context to Copilot assistance to developer review">
+                    <span className="workflow-step"><span className="workflow-icon"><Files size={17} /></span><span className="workflow-label">CONTEXT</span></span>
+                    <ArrowRight className="workflow-connector" size={15} />
+                    <span className="workflow-step workflow-copilot"><span className="workflow-icon"><Bot size={18} /></span><span className="workflow-label">COPILOT</span></span>
+                    <ArrowRight className="workflow-connector" size={15} />
+                    <span className="workflow-step"><span className="workflow-icon"><ShieldCheck size={17} /></span><span className="workflow-label">REVIEW</span></span>
+                  </div>
                 </div>
                 <div className="hero-progress">
                   <span className="section-kicker">YOUR FIELD GUIDE</span>
@@ -265,10 +274,12 @@ function App() {
                 <section className="syllabus-list" aria-label="Learning objectives">
                   {filteredObjectives.map((objective) => {
                     const index = objectives.indexOf(objective)
+                    const Icon = objectiveIcons[objective.id] ?? FileText
                     const completed = objective.lessons.filter((lesson) => progress.completedLessonIds.includes(lesson.id)).length
                     const percentage = Math.round((completed / objective.lessons.length) * 100)
                     return <button className="syllabus-row" key={objective.id} onClick={() => openObjective(objective.id)}>
                       <span className="syllabus-number">{String(index + 1).padStart(2, '0')}</span>
+                      <span className={`syllabus-icon syllabus-icon-${objective.tone}`} aria-hidden="true"><Icon size={17} strokeWidth={1.8} /></span>
                       <span className="syllabus-main"><strong>{objective.title}</strong><span>{objective.description}</span></span>
                       <span className="syllabus-topics">{String(objective.lessons.length).padStart(2, '0')} TOPICS</span>
                       <span className="syllabus-completion"><span>{completed}/{objective.lessons.length}</span><span className="row-track"><span style={{ width: `${percentage}%` }} /></span></span>
