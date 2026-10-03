@@ -22,29 +22,21 @@
 
 <p align="center"><em>The Copilot Academy overview — open the live guide to explore the interactive version.</em></p>
 
-## On this page
+## Choose your path
 
-<p align="center">
-	<a href="#guide-at-a-glance">Guide at a glance</a> &nbsp;·&nbsp;
-	<a href="#workflow-cheat-sheet">Workflow cheat sheet</a> &nbsp;·&nbsp;
-	<a href="#chat-commands">Chat commands</a> &nbsp;·&nbsp;
-	<a href="#copilot-cheat-sheets">Full topic map</a> &nbsp;·&nbsp;
-	<a href="#run-locally">Run locally</a> &nbsp;·&nbsp;
-	<a href="#contributing">Contribute</a>
-</p>
-
-Copilot Academy is not affiliated with, endorsed by, or sponsored by GitHub or Microsoft.
-
-## Guide at a glance
-
-| Section | What you'll find | Start here |
+| 01 · Find a technique | 02 · Build exam confidence | 03 · Try a scenario |
 | --- | --- | --- |
-| **Tips & tricks** | Original prompt patterns and workflows for inline coding, tests, debugging, review, instructions, and agents. | [Open the interactive guide](https://ranjigt.github.io/copilot-academy/) |
-| **Study guide** | Short notes mapped to the six published GH-300 objective areas. | [Browse the guide](https://ranjigt.github.io/copilot-academy/) |
-| **Practice** | Original scenario questions with explanations; not recalled exam questions. | [Practice in the app](https://ranjigt.github.io/copilot-academy/) |
-| **Flashcards & progress** | Review concepts and track progress in this browser without an account. | [Open Copilot Academy](https://ranjigt.github.io/copilot-academy/) |
+| **Tips & tricks**<br>Prompts, inline coding, tests, debugging, instructions, and agent workflows.<br><br>[Explore practical tips →](https://ranjigt.github.io/copilot-academy/) | **GH-300 study guide**<br>Six objective areas, concise notes, and browser-saved progress.<br><br>[Open the study guide →](https://ranjigt.github.io/copilot-academy/) | **Practice & flashcards**<br>Original scenarios and quick recall. Practice items are not official exam questions.<br><br>[Start practicing →](https://ranjigt.github.io/copilot-academy/) |
 
-GitHub Copilot and GH-300 are mentioned to describe the subject. Copilot Academy is an independent community project and is not affiliated with GitHub or Microsoft.
+```mermaid
+flowchart LR
+    A[Choose a task] --> B[Add useful context]
+    B --> C[Pick a Copilot surface]
+    C --> D[Review the diff]
+    D --> E[Run checks]
+```
+
+> Copilot Academy is an independent community project, not affiliated with or endorsed by GitHub or Microsoft. Feature availability varies by product, plan, and organization policy.
 
 ## Workflow cheat sheet
 
@@ -95,6 +87,9 @@ Create a production build with `npm run build`. The generated site is static and
 The interactive library currently starts with 18 practical tips. It is designed to grow as a community reference, not claim to list every Copilot capability. Features and availability change over time and may depend on your editor, plan, or organization settings; verify product behavior against current [GitHub Copilot documentation](https://docs.github.com/en/copilot).
 
 ## Quick Reference
+
+<details>
+<summary>Open reusable prompt patterns and repository guidance</summary>
 
 These prompt patterns work as starting points. Add the relevant files, code, and project constraints in your Copilot experience, then review and test the result.
 
@@ -148,7 +143,12 @@ Add pagination to the search endpoint. Preserve the response envelope, add tests
 
 Browse the [full interactive tips library](https://ranjigt.github.io/copilot-academy/) for more examples covering inline suggestions, custom instructions, agent workflows, code review, and maintenance.
 
+</details>
+
 ## Copilot Cheat Sheets
+
+<details>
+<summary>Open the categorized Copilot topic map and further reading</summary>
 
 These are original quick references for common Copilot workflows. The topic map below reorganizes the breadth of the reference collection around developer tasks instead of reproducing its numbered layout. Feature names, controls, and availability can vary by editor, plan, and organization policy; check official docs before relying on a specific control.
 
@@ -223,6 +223,8 @@ The following community collection helped inspire this README format. This proje
 - [GitHub Copilot cheat sheet](https://github.com/sukurcf/resources/blob/main/cheatsheets/github-copilot-cheatsheet.html)
 - [Copilot Chat experience cheat sheet](https://github.com/sukurcf/resources/blob/main/cheatsheets/copilot-chat-experience-cheatsheet.html)
 - [GitHub Copilot workflow cheat sheet](https://github.com/sukurcf/resources/blob/main/cheatsheets/github-copilot-workflow-cheatsheet.html)
+
+</details>
 
 ## Contributing
 
