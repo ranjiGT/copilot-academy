@@ -88,7 +88,20 @@ Browse the [full interactive tips library](https://ranjigt.github.io/copilot-aca
 
 ## Copilot Cheat Sheets
 
-These are original quick references for common Copilot workflows. Feature names, controls, and availability can vary by editor, plan, and organization policy; check the linked official docs before relying on a specific control.
+These are original quick references for common Copilot workflows. The topic map below reorganizes the breadth of the reference collection around developer tasks instead of reproducing its numbered layout. Feature names, controls, and availability can vary by editor, plan, and organization policy; check official docs before relying on a specific control.
+
+### Topic Map
+
+| Work area | Topics covered |
+| --- | --- |
+| **Write and communicate** | Copilot request flow and context; Chat; inline completions; next-edit suggestions; inline chat; prompt and context design; smart actions |
+| **Shape your workspace** | Repository and path-specific instructions; prompt files; custom agents and modes; skills; MCP connections; hooks; toolsets; customization file layout; Copilot Memory |
+| **Coordinate agent work** | GitHub.com workflows; Copilot CLI; Spaces and Spark; third-party agents; browser-based testing; checkpoints and conversation forks; handoffs and parallel sessions; subagents; Copilot app; automations; SDK and Agent Client Protocol; cloud-agent environment; agent apps; CLI plugins, language servers, and remote control; cross-product integrations; spec-first development |
+| **Choose models and manage usage** | Model selection; bring-your-own-key options; hosting, retention, and residency; model capabilities and lifecycle; AI-credit costs |
+| **Protect code and teams** | Content exclusions; privacy and responsible use; organization and enterprise controls; public-code references and attribution; tool permissions and approvals; security and code-quality features |
+| **Review and operate** | Code review; Copilot Autofix; chat and agent debugging; usage-metrics API; adoption dashboards and cohorts |
+
+Use this as a navigation map, not a promise that every feature behaves the same across products. Details that change often—such as model availability, billing, policy scope, and preview status—belong next to current official sources in the interactive guide.
 
 ### Choose a Copilot Surface
 
