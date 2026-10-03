@@ -2,6 +2,14 @@
 
 A community-built field guide to using GitHub Copilot in everyday software development: practical prompts, coding workflows, tips and tricks, plus a dedicated GH-300 study path.
 
+<p align="center">
+	<a href="https://github.com/features/copilot">
+		<img src="https://images.ctfassets.net/8aevphvgewt8/408GOtU4YtxBmYvQfPEOUN/5e71a8000b38a8a9788719fec3b9023d/copilot-app.webp?w=1200&fm=webp&q=80" alt="GitHub Copilot app workspace with repository sessions and coding tasks" width="100%" />
+	</a>
+</p>
+
+<p align="center"><em>GitHub Copilot app screenshot from the <a href="https://github.com/features/copilot">official GitHub Copilot page</a>.</em></p>
+
 Copilot Academy is not affiliated with, endorsed by, or sponsored by GitHub or Microsoft.
 
 ## Run locally
