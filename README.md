@@ -152,6 +152,228 @@ Browse the [full interactive tips library](https://ranjigt.github.io/copilot-aca
 
 These are original quick references for common Copilot workflows. The topic map below reorganizes the breadth of the reference collection around developer tasks instead of reproducing its numbered layout. Feature names, controls, and availability can vary by editor, plan, and organization policy; check official docs before relying on a specific control.
 
+### Complete Table of Contents
+
+The linked community cheat sheet has 50 numbered sections plus a quick-reference section. This index covers every section with short summaries in our own words; it is not a reproduction of the source content.
+
+**Core interactions:** [1. Architecture & flow](#section-01) · [2. Chat experience](#section-02) · [3. Code completions](#section-03) · [4. Next edit suggestions](#section-04) · [5. Inline chat](#section-05) · [6. Model selection & AI credits](#section-06)
+
+**Customization:** [7. Custom instructions](#section-07) · [8. Instructions files](#section-08) · [9. Prompt files](#section-09) · [10. Chat modes & custom agents](#section-10) · [11. Skills](#section-11) · [12. MCP](#section-12) · [13. Hooks](#section-13) · [17. Toolsets](#section-17)
+
+**Products & setup:** [14. Copilot on GitHub.com](#section-14) · [15. Copilot CLI](#section-15) · [16. Spaces & Spark](#section-16) · [18. Content exclusion](#section-18) · [19. Spec-driven development](#section-19) · [20. Customization file structure](#section-20) · [27. BYOK](#section-27)
+
+**Agent workflows:** [21. Third-party coding agents](#section-21) · [22. Browser agent tools](#section-22) · [23. Checkpoints & session forking](#section-23) · [24. Agent sessions & orchestration](#section-24) · [25. Prompt & context engineering](#section-25) · [26. Smart actions](#section-26) · [30. Subagents](#section-30) · [38. Copilot app](#section-38) · [39. Automations](#section-39) · [40. SDK & ACP](#section-40) · [43. Agent apps](#section-43)
+
+**Trust, governance & operations:** [28. Privacy, security & trust](#section-28) · [29. Organization & enterprise administration](#section-29) · [31. Metrics API](#section-31) · [32. Code referencing & attribution](#section-32) · [33. Autofix & Advanced Security](#section-33) · [35. Permissions & approvals](#section-35) · [41. Code review](#section-41) · [42. Cloud-agent environment security](#section-42) · [48. GitHub Code Security AI features](#section-48)
+
+**Models, diagnostics & integrations:** [34. Chat debug view](#section-34) · [36. Agent debug logs](#section-36) · [37. Copilot Memory](#section-37) · [44. Model hosting & data residency](#section-44) · [45. Model lifecycle](#section-45) · [46. AI-credit cost controls](#section-46) · [47. Usage dashboards](#section-47) · [49. CLI plugins, LSP & remote control](#section-49) · [50. Integrations & entry points](#section-50) · [Quick Reference & Resources](#section-quick-reference)
+
+### Section Summaries
+
+<a id="section-01"></a>
+#### 1. Copilot Architecture & Flow
+How prompts, workspace context, policy checks, model routing, and responses fit together at a high level.
+
+<a id="section-02"></a>
+#### 2. Chat Experience
+Chat modes, context references, slash commands, participants, and voice features vary by client.
+
+<a id="section-03"></a>
+#### 3. Code Completions
+Inline suggestions respond to nearby code and comments; review suggestions before accepting them.
+
+<a id="section-04"></a>
+#### 4. Next Edit Suggestions (NES)
+Related edits can be suggested after an initial change, helping with repetitive follow-up updates.
+
+<a id="section-05"></a>
+#### 5. Inline Chat
+Ask for focused code or terminal help in place, then inspect proposed changes or commands.
+
+<a id="section-06"></a>
+#### 6. Model Selection & AI Credits
+Model availability and usage costs vary; use current official pricing and model references.
+
+<a id="section-07"></a>
+#### 7. Custom Instructions
+Persistent guidance can shape Copilot behavior, with precedence and support depending on its source and client.
+
+<a id="section-08"></a>
+#### 8. Instructions.md Files
+Path-scoped instruction files apply conditionally, typically according to supported matching rules.
+
+<a id="section-09"></a>
+#### 9. Reusable Prompt Files
+Saved prompt templates make common, user-invoked tasks repeatable.
+
+<a id="section-10"></a>
+#### 10. Chat Modes & Custom Agents
+Built-in modes and custom agent profiles provide different tools, instructions, and task boundaries.
+
+<a id="section-11"></a>
+#### 11. Skills
+Skills package task-specific instructions and optional resources for compatible agent clients.
+
+<a id="section-12"></a>
+#### 12. MCP — Model Context Protocol
+MCP connects compatible Copilot surfaces to external tools and context; review permissions and server trust.
+
+<a id="section-13"></a>
+#### 13. Hooks
+Lifecycle hooks can automate or constrain agent workflows where supported; validate behavior in the target client.
+
+<a id="section-14"></a>
+#### 14. Copilot on GitHub.com
+GitHub-hosted agent, review, issue, and pull-request features have distinct workflows and controls.
+
+<a id="section-15"></a>
+#### 15. Copilot CLI
+The terminal agent supports interactive and scripted workflows; inspect permissions, commands, and cost.
+
+<a id="section-16"></a>
+#### 16. Spaces & Spark
+Spaces organize project context, while Spark helps create web applications from natural-language requests.
+
+<a id="section-17"></a>
+#### 17. Toolsets
+Toolsets group compatible tools for reuse in prompts and agent configurations.
+
+<a id="section-18"></a>
+#### 18. Content Exclusion
+Exclusion rules limit context sharing on supported surfaces but are not a universal secret-protection mechanism.
+
+<a id="section-19"></a>
+#### 19. Spec-Driven Development
+Community frameworks use reviewed specifications and acceptance criteria to guide agent implementation.
+
+<a id="section-20"></a>
+#### 20. Customization File Structure
+Instruction, prompt, agent, skill, hook, and MCP configuration locations differ across products.
+
+<a id="section-21"></a>
+#### 21. Third-Party Coding Agents
+Partner coding agents can complement Copilot workflows; availability, permissions, and billing differ.
+
+<a id="section-22"></a>
+#### 22. Browser Agent Tools
+Integrated browser tools can support a build-test-review loop when enabled in the relevant VS Code setup.
+
+<a id="section-23"></a>
+#### 23. Checkpoints & Session Forking
+Checkpoints and forks help compare or recover agent work, while Git remains the durable version-control record.
+
+<a id="section-24"></a>
+#### 24. Agent Sessions, Handoffs & Orchestration
+Local, CLI, cloud, and parallel sessions support different handoff patterns and execution environments.
+
+<a id="section-25"></a>
+#### 25. Prompt & Context Engineering
+Clear goals, relevant context, explicit constraints, and observable acceptance checks improve task requests.
+
+<a id="section-26"></a>
+#### 26. Smart Actions
+Contextual actions can automate small tasks such as generating a commit message or addressing a diagnostic.
+
+<a id="section-27"></a>
+#### 27. BYOK — Bring Your Own Key
+Compatible clients may connect user- or organization-managed model providers, subject to provider terms.
+
+<a id="section-28"></a>
+#### 28. Privacy, Security & Trust
+Data handling depends on plan, feature, provider, and settings; verify claims against current terms.
+
+<a id="section-29"></a>
+#### 29. Organization & Enterprise Administration
+Administrators manage seats, policies, model access, usage reporting, and audit controls.
+
+<a id="section-30"></a>
+#### 30. Subagents
+Focused child agents can research or execute bounded tasks; capabilities and cost depend on configuration.
+
+<a id="section-31"></a>
+#### 31. Copilot Metrics API
+Usage reports and exports support adoption and activity analysis; endpoints, permissions, and schemas can change.
+
+<a id="section-32"></a>
+#### 32. Code Referencing & Attribution
+Public-code matching and references can inform review, but they do not replace license and provenance checks.
+
+<a id="section-33"></a>
+#### 33. Copilot Autofix & Advanced Security
+AI-assisted security fixes are distinct from secret detection and dependency updates; validate fixes with review and tests.
+
+<a id="section-34"></a>
+#### 34. Chat Debug View
+Debug views can reveal prompts, context, responses, and tool activity to help investigate unexpected behavior.
+
+<a id="section-35"></a>
+#### 35. Permission Levels & Approvals
+Agent autonomy is shaped by tool approvals, URL controls, sandboxing, and organization-managed policies.
+
+<a id="section-36"></a>
+#### 36. Agent Debug Logs & Chat Debug View
+Agent logs provide workflow events and usage clues; debug views expose request details in supported clients.
+
+<a id="section-37"></a>
+#### 37. GitHub Copilot Memory
+Memory can retain selected repository facts or preferences where enabled; review its scope and retention controls.
+
+<a id="section-38"></a>
+#### 38. GitHub Copilot App
+The desktop app brings agent sessions and GitHub workflows together, with isolated workspaces in supported setups.
+
+<a id="section-39"></a>
+#### 39. Copilot Automations
+Repository events or schedules can start cloud-agent work, with tool access, billing, and approval boundaries to consider.
+
+<a id="section-40"></a>
+#### 40. Copilot SDK and Agent Client Protocol
+The SDK embeds agent workflows in applications, while ACP provides a protocol for compatible clients and servers.
+
+<a id="section-41"></a>
+#### 41. GitHub Copilot Code Review
+Copilot review can surface suggested findings across supported surfaces but does not replace required human approval.
+
+<a id="section-42"></a>
+#### 42. Cloud-Agent Environment Security
+Runner isolation, setup workflows, network access, credentials, and permissions define important cloud-agent boundaries.
+
+<a id="section-43"></a>
+#### 43. Agent Apps and Partner Agents
+GitHub-integrated agent apps are a distinct extension path; evaluate app permissions and organization policies.
+
+<a id="section-44"></a>
+#### 44. Model Hosting, Retention, and Residency
+Provider-specific hosting and retention terms matter when selecting models for regulated or sensitive work.
+
+<a id="section-45"></a>
+#### 45. Model Lifecycle and Extended Capabilities
+Model availability, context limits, reasoning options, and caching change over time and across surfaces.
+
+<a id="section-46"></a>
+#### 46. AI-Credit Cost Controls
+Model choice, task size, budgets, and Actions usage all influence the cost of agent workflows.
+
+<a id="section-47"></a>
+#### 47. Usage Dashboards and Adoption Cohorts
+Dashboards and reports help interpret adoption and impact, subject to coverage, timing, and attribution limits.
+
+<a id="section-48"></a>
+#### 48. GitHub Code Security AI Features
+Security AI features address different findings and risks; keep human review, CI, and security checks in the loop.
+
+<a id="section-49"></a>
+#### 49. Copilot CLI Plugins, LSP, and Remote Control
+CLI extensions can add tools and language intelligence; remote access and offline behavior have separate limits.
+
+<a id="section-50"></a>
+#### 50. GitHub Copilot Integrations and Entry Points
+Choose an entry point by workflow, while accounting for its own context, permissions, and billing.
+
+<a id="section-quick-reference"></a>
+#### Quick Reference & Resources
+Shortcuts, commands, extensions, documentation, and community resources are collected for fast lookup.
+
 ### Topic Map
 
 | Work area | Topics covered |
