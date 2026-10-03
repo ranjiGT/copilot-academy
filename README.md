@@ -24,6 +24,60 @@ Create a production build with `npm run build`. The generated site is static and
 
 The library currently starts with 18 practical tips. It is designed to grow as a community reference, not claim to list every Copilot capability. Features and availability change over time and may depend on your editor, plan, or organization settings; verify product behavior against current [GitHub Copilot documentation](https://docs.github.com/en/copilot).
 
+## Quick Reference
+
+These prompt patterns work as starting points. Add the relevant files, code, and project constraints in your Copilot experience, then review and test the result.
+
+### Make a focused change
+
+State the target, behavior, boundary, and verification:
+
+```text
+Update the date parser to accept ISO dates. Keep the existing API and add tests for invalid input.
+```
+
+For risky changes, ask for a plan before requesting edits:
+
+```text
+Inspect the current API and tests. Propose a minimal migration plan; do not edit files yet.
+```
+
+### Debug with evidence
+
+Include the exact failure and ask for a way to test the likely cause:
+
+```text
+This test fails with the output below. List the two most likely causes and the smallest check to distinguish them. Do not change code yet.
+```
+
+### Generate useful tests
+
+Describe behavior and boundaries rather than asking for tests in general:
+
+```text
+For this retry helper, test success, a transient failure, the maximum attempt count, and exhausted retries.
+```
+
+### Review a diff
+
+Tell Copilot what kind of findings matter and whether it should edit:
+
+```text
+Review this diff for correctness, security, and missing tests. Report actionable findings with file and line references; do not rewrite it.
+```
+
+### Guide work across a repository
+
+For repeated project conventions, add concise repository instructions (for example, `.github/copilot-instructions.md`). Keep them specific and verify the current instruction-file behavior for your editor.
+
+For agent tasks, make the finish line explicit:
+
+```text
+Add pagination to the search endpoint. Preserve the response envelope, add tests for empty and final pages, and report the test command and result.
+```
+
+Browse the [full interactive tips library](https://ranjigt.github.io/copilot-academy/) for more examples covering inline suggestions, custom instructions, agent workflows, code review, and maintenance.
+
 ## Contributing
 
 Community contributions are welcome. Add focused, original tips that solve a real development task. A useful entry includes:
