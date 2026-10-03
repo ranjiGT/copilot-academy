@@ -1,7 +1,7 @@
 <div align="center">
 	<h1>Copilot Academy</h1>
-	<p><strong>Learn. Practice. Build with AI.</strong></p>
-	<p>A community-built field guide to GitHub Copilot tips, coding workflows, and GH-300 study.</p>
+	<p><strong>Prompts that work. Workflows you can trust. Changes you can verify.</strong></p>
+	<p>A practical field guide to everyday GitHub Copilot, from your first prompt to a reviewed change.</p>
 	<p>
 		<a href="https://ranjigt.github.io/copilot-academy/"><strong>Open the interactive academy</strong></a>
 		&nbsp;·&nbsp;
@@ -28,12 +28,19 @@
 | --- | --- | --- |
 | **Tips & tricks**<br>Prompts, inline coding, tests, debugging, instructions, and agent workflows.<br><br>[Explore practical tips →](https://ranjigt.github.io/copilot-academy/) | **GH-300 study guide**<br>Six objective areas, concise notes, and browser-saved progress.<br><br>[Open the study guide →](https://ranjigt.github.io/copilot-academy/) | **Practice & flashcards**<br>Original scenarios and quick recall. Practice items are not official exam questions.<br><br>[Start practicing →](https://ranjigt.github.io/copilot-academy/) |
 
+## The Copilot loop
+
+Keep the task focused, inspect what Copilot changed, and use test results to steer the next step.
+
 ```mermaid
 flowchart LR
     A[Choose a task] --> B[Add useful context]
     B --> C[Pick a Copilot surface]
     C --> D[Review the diff]
     D --> E[Run checks]
+    E --> F{Checks pass?}
+    F -- Yes --> G[Keep the change]
+    F -- No --> B
 ```
 
 > Copilot Academy is an independent community project, not affiliated with or endorsed by GitHub or Microsoft. Feature availability varies by product, plan, and organization policy.
@@ -153,17 +160,13 @@ These are original quick references for common Copilot workflows. The topic map 
 
 The linked community cheat sheet has 50 numbered sections plus a quick-reference section. This index covers every section with short summaries in our own words; it is not a reproduction of the source content.
 
-**Core interactions:** [1. Architecture & flow](#section-01) · [2. Chat experience](#section-02) · [3. Code completions](#section-03) · [4. Next edit suggestions](#section-04) · [5. Inline chat](#section-05) · [6. Model selection & AI credits](#section-06)
-
-**Customization:** [7. Custom instructions](#section-07) · [8. Instructions files](#section-08) · [9. Prompt files](#section-09) · [10. Chat modes & custom agents](#section-10) · [11. Skills](#section-11) · [12. MCP](#section-12) · [13. Hooks](#section-13) · [17. Toolsets](#section-17)
-
-**Products & setup:** [14. Copilot on GitHub.com](#section-14) · [15. Copilot CLI](#section-15) · [16. Spaces & Spark](#section-16) · [18. Content exclusion](#section-18) · [19. Spec-driven development](#section-19) · [20. Customization file structure](#section-20) · [27. BYOK](#section-27)
-
-**Agent workflows:** [21. Third-party coding agents](#section-21) · [22. Browser agent tools](#section-22) · [23. Checkpoints & session forking](#section-23) · [24. Agent sessions & orchestration](#section-24) · [25. Prompt & context engineering](#section-25) · [26. Smart actions](#section-26) · [30. Subagents](#section-30) · [38. Copilot app](#section-38) · [39. Automations](#section-39) · [40. SDK & ACP](#section-40) · [43. Agent apps](#section-43)
-
-**Trust, governance & operations:** [28. Privacy, security & trust](#section-28) · [29. Organization & enterprise administration](#section-29) · [31. Metrics API](#section-31) · [32. Code referencing & attribution](#section-32) · [33. Autofix & Advanced Security](#section-33) · [35. Permissions & approvals](#section-35) · [41. Code review](#section-41) · [42. Cloud-agent environment security](#section-42) · [48. GitHub Code Security AI features](#section-48)
-
-**Models, diagnostics & integrations:** [34. Chat debug view](#section-34) · [36. Agent debug logs](#section-36) · [37. Copilot Memory](#section-37) · [44. Model hosting & data residency](#section-44) · [45. Model lifecycle](#section-45) · [46. AI-credit cost controls](#section-46) · [47. Usage dashboards](#section-47) · [49. CLI plugins, LSP & remote control](#section-49) · [50. Integrations & entry points](#section-50) · [Quick Reference & Resources](#section-quick-reference)
+| **Core interactions** | **Customization** |
+| --- | --- |
+| [01 Architecture & flow](#section-01)<br>[02 Chat experience](#section-02)<br>[03 Code completions](#section-03)<br>[04 Next edit suggestions](#section-04)<br>[05 Inline chat](#section-05)<br>[06 Model selection & AI credits](#section-06) | [07 Custom instructions](#section-07)<br>[08 Instructions files](#section-08)<br>[09 Prompt files](#section-09)<br>[10 Chat modes & custom agents](#section-10)<br>[11 Skills](#section-11)<br>[12 MCP](#section-12)<br>[13 Hooks](#section-13)<br>[17 Toolsets](#section-17) |
+| **Products & setup** | **Agent workflows** |
+| [14 Copilot on GitHub.com](#section-14)<br>[15 Copilot CLI](#section-15)<br>[16 Spaces & Spark](#section-16)<br>[18 Content exclusion](#section-18)<br>[19 Spec-driven development](#section-19)<br>[20 Customization file structure](#section-20)<br>[27 BYOK](#section-27) | [21 Third-party coding agents](#section-21)<br>[22 Browser agent tools](#section-22)<br>[23 Checkpoints & session forking](#section-23)<br>[24 Agent sessions & orchestration](#section-24)<br>[25 Prompt & context engineering](#section-25)<br>[26 Smart actions](#section-26)<br>[30 Subagents](#section-30)<br>[38 Copilot app](#section-38)<br>[39 Automations](#section-39)<br>[40 SDK & ACP](#section-40)<br>[43 Agent apps](#section-43) |
+| **Trust, governance & operations** | **Models, diagnostics & integrations** |
+| [28 Privacy, security & trust](#section-28)<br>[29 Organization & enterprise administration](#section-29)<br>[31 Metrics API](#section-31)<br>[32 Code referencing & attribution](#section-32)<br>[33 Autofix & Advanced Security](#section-33)<br>[35 Permissions & approvals](#section-35)<br>[41 Code review](#section-41)<br>[42 Cloud-agent environment security](#section-42)<br>[48 GitHub Code Security AI features](#section-48) | [34 Chat debug view](#section-34)<br>[36 Agent debug logs](#section-36)<br>[37 Copilot Memory](#section-37)<br>[44 Model hosting & data residency](#section-44)<br>[45 Model lifecycle](#section-45)<br>[46 AI-credit cost controls](#section-46)<br>[47 Usage dashboards](#section-47)<br>[49 CLI plugins, LSP & remote control](#section-49)<br>[50 Integrations & entry points](#section-50)<br>[Quick Reference & Resources](#section-quick-reference) |
 
 ### Section Summaries
 
