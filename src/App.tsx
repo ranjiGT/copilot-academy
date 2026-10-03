@@ -40,6 +40,7 @@ type ProgressState = {
 
 const progressKey = 'copilot-academy-progress-v1'
 const themeKey = 'copilot-academy-theme-v1'
+const copilotAppImage = 'https://images.ctfassets.net/8aevphvgewt8/408GOtU4YtxBmYvQfPEOUN/5e71a8000b38a8a9788719fec3b9023d/copilot-app.webp?w=1200&fm=webp&q=80'
 const emptyProgress: ProgressState = {
   completedLessonIds: [],
   quizAttempts: 0,
@@ -328,6 +329,12 @@ function App() {
                 </section>
 
                 <aside className="drill-rail">
+                  <figure className="copilot-product-figure">
+                    <a href="https://github.com/features/copilot" target="_blank" rel="noreferrer" aria-label="Explore GitHub Copilot">
+                      <img src={copilotAppImage} alt="GitHub Copilot app workspace with repository sessions and coding tasks" loading="lazy" />
+                    </a>
+                    <figcaption>GitHub Copilot app <ExternalLink size={12} /></figcaption>
+                  </figure>
                   <span className="drill-index">FIELD NOTE <span>01 / {String(practiceQuestions.length).padStart(2, '0')}</span></span>
                   <span className="drill-kicker"><Target size={15} /> DAILY DRILL</span>
                   <h3>Think it through.</h3>

@@ -85,6 +85,11 @@ h1,h2,h3,p { margin: 0; }
 .syllabus-completion .row-track { width: 100%; height: 3px; }
 .syllabus-arrow { color: #898e83; }
 .drill-rail { padding: 4px 0 0 22px; border-left: 1px solid #bfc4b8; }
+.copilot-product-figure { margin: 0 0 22px; }
+.copilot-product-figure > a { display: block; overflow: hidden; border: 1px solid #343a32; background: #080a0e; }
+.copilot-product-figure img { display: block; width: 100%; aspect-ratio: 1.7; object-fit: cover; object-position: center; }
+.copilot-product-figure figcaption { display: flex; align-items: center; gap: 5px; margin-top: 7px; color: #777c72; font-size: 11px; }
+.copilot-product-figure figcaption svg { color: #70766a; }
 .drill-index { display: block; margin-bottom: 30px; color: #7a7f75; font: 9px var(--mono); letter-spacing: .3px; }
 .drill-index span { color: #a0a397; }
 .drill-kicker { display: flex; align-items: center; gap: 7px; color: #74796f; font-size: 9px; font-weight: 650; letter-spacing: .9px; }
@@ -310,6 +315,8 @@ h1,h2,h3,p { margin: 0; }
   .syllabus-completion .row-track { flex: 1; }
   .syllabus-arrow { grid-column: 4; grid-row: 1; }
   .drill-rail { display: grid; grid-template-columns: 1fr auto; gap: 0 10px; padding: 15px 0 0; border-top: 1px solid #bfc4b8; border-left: 0; }
+  .copilot-product-figure { grid-column: 1/-1; margin-bottom: 14px; }
+  .copilot-product-figure img { max-height: 205px; }
   .drill-index { grid-column: 1/-1; margin-bottom: 14px; }
   .drill-kicker,.drill-rail h3,.drill-rail > p { grid-column: 1/-1; }
   .drill-rail h3 { margin-top: 7px; font-size: 19px; }
@@ -409,6 +416,8 @@ h1,h2,h3,p { margin: 0; }
 .theme-dark .syllabus-row:hover,.theme-dark .objective-progress-row:hover { background: #252a21; }
 .theme-dark .syllabus-number,.theme-dark .syllabus-arrow,.theme-dark .drill-source,.theme-dark .lesson-list-header,.theme-dark .lesson-list-header span,.theme-dark .lesson-duration,.theme-dark .lesson-detail-toggle,.theme-dark .reference-rail .section-kicker,.theme-dark .quiz-card-top,.theme-dark .quiz-of,.theme-dark .question-type,.theme-dark .quiz-footer > span,.theme-dark .flashcard-toolbar,.theme-dark .flashcard-toolbar span span,.theme-dark .flashcard-hint,.theme-dark .summary-stat-label,.theme-dark .summary-stat-foot,.theme-dark .progress-detail-heading > span,.theme-dark .progress-row-count,.theme-dark .progress-detail-footer,.theme-dark .page-footer { color: #a7ad9f; }
 .theme-dark .drill-rail,.theme-dark .reference-rail,.theme-dark .quiz-aside,.theme-dark .flashcard-side-note { border-color: #454a3f; }
+.theme-dark .copilot-product-figure > a { border-color: #51574b; }
+.theme-dark .copilot-product-figure figcaption,.theme-dark .copilot-product-figure figcaption svg { color: #b3b8ac; }
 .theme-dark .drill-rail .text-action,.theme-dark .reference-rail > a,.theme-dark .reference-rail .text-action,.theme-dark .page-footer a { color: #d2e875; }
 .theme-dark .lesson-check { color: #d1d5ca; border-color: #60665a; }
 .theme-dark .lesson-complete .lesson-check { color: #1c2116; border-color: var(--acid); background: var(--acid); }
