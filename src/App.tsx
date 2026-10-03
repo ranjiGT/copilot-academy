@@ -27,6 +27,7 @@ import {
 } from 'lucide-react'
 import { flashcards, objectives, practiceQuestions } from './data/learningContent'
 import { codeTips, tipCategories, type TipCategory } from './data/codeTips'
+import academyScreenshot from './assets/copilot-academy-tips.png'
 import './FieldGuide.css'
 
 type Page = 'overview' | 'tips' | 'study' | 'practice' | 'flashcards' | 'progress'
@@ -40,7 +41,6 @@ type ProgressState = {
 
 const progressKey = 'copilot-academy-progress-v1'
 const themeKey = 'copilot-academy-theme-v1'
-const copilotAppImage = 'https://images.ctfassets.net/8aevphvgewt8/408GOtU4YtxBmYvQfPEOUN/5e71a8000b38a8a9788719fec3b9023d/copilot-app.webp?w=1200&fm=webp&q=80'
 const emptyProgress: ProgressState = {
   completedLessonIds: [],
   quizAttempts: 0,
@@ -330,10 +330,10 @@ function App() {
 
                 <aside className="drill-rail">
                   <figure className="copilot-product-figure">
-                    <a href="https://github.com/features/copilot" target="_blank" rel="noreferrer" aria-label="Explore GitHub Copilot">
-                      <img src={copilotAppImage} alt="GitHub Copilot app workspace with repository sessions and coding tasks" loading="lazy" />
+                    <a href="https://github.com/ranjiGT/copilot-academy" target="_blank" rel="noreferrer" aria-label="View Copilot Academy on GitHub">
+                      <img src={academyScreenshot} alt="Copilot Academy overview with tips, study guide, progress, and practice navigation" loading="lazy" />
                     </a>
-                    <figcaption>GitHub Copilot app <ExternalLink size={12} /></figcaption>
+                    <figcaption>Copilot Academy <ExternalLink size={12} /></figcaption>
                   </figure>
                   <span className="drill-index">FIELD NOTE <span>01 / {String(practiceQuestions.length).padStart(2, '0')}</span></span>
                   <span className="drill-kicker"><Target size={15} /> DAILY DRILL</span>
