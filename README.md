@@ -147,9 +147,6 @@ Browse the [full interactive tips library](https://ranjigt.github.io/copilot-aca
 
 ## Copilot Cheat Sheets
 
-<details>
-<summary>Open the categorized Copilot topic map and further reading</summary>
-
 These are original quick references for common Copilot workflows. The topic map below reorganizes the breadth of the reference collection around developer tasks instead of reproducing its numbered layout. Feature names, controls, and availability can vary by editor, plan, and organization policy; check official docs before relying on a specific control.
 
 ### Complete Table of Contents
@@ -373,6 +370,9 @@ Choose an entry point by workflow, while accounting for its own context, permiss
 <a id="section-quick-reference"></a>
 #### Quick Reference & Resources
 Shortcuts, commands, extensions, documentation, and community resources are collected for fast lookup.
+
+<details>
+<summary>Open the categorized Copilot topic map and further reading</summary>
 
 ### Topic Map
 
