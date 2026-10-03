@@ -8,6 +8,7 @@ import {
   ChevronRight,
   Clock3,
   Compass,
+  Copy,
   ExternalLink,
   FileText,
   Files,
@@ -25,9 +26,10 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { flashcards, objectives, practiceQuestions } from './data/learningContent'
+import { codeTips, tipCategories, type TipCategory } from './data/codeTips'
 import './FieldGuide.css'
 
-type Page = 'overview' | 'study' | 'practice' | 'flashcards' | 'progress'
+type Page = 'overview' | 'tips' | 'study' | 'practice' | 'flashcards' | 'progress'
 type Theme = 'light' | 'dark'
 type ProgressState = {
   completedLessonIds: string[]
@@ -47,6 +49,7 @@ const emptyProgress: ProgressState = {
 
 const navigation: { id: Page; label: string; icon: LucideIcon }[] = [
   { id: 'overview', label: 'Overview', icon: Compass },
+  { id: 'tips', label: 'Tips & tricks', icon: Sparkles },
   { id: 'study', label: 'Study guide', icon: BookOpen },
   { id: 'practice', label: 'Practice', icon: Target },
   { id: 'flashcards', label: 'Flashcards', icon: Layers3 },
@@ -96,6 +99,9 @@ function App() {
   const [page, setPage] = useState<Page>('overview')
   const [theme, setTheme] = useState<Theme>(loadTheme)
   const [activeObjectiveId, setActiveObjectiveId] = useState<string>(objectives[0].id)
+  const [activeTipCategory, setActiveTipCategory] = useState<TipCategory>('All tips')
+  const [copiedTipId, setCopiedTipId] = useState<string | null>(null)
+  const [copyUnavailableTipId, setCopyUnavailableTipId] = useState<string | null>(null)
   const [expandedLessonId, setExpandedLessonId] = useState<string | null>(null)
   const [query, setQuery] = useState('')
   const searchRef = useRef<HTMLInputElement>(null)
@@ -148,6 +154,11 @@ function App() {
   const visibleLessons = activeObjective.lessons.filter((lesson) =>
     `${lesson.title} ${lesson.summary}`.toLowerCase().includes(normalizedQuery),
   )
+  const visibleTips = codeTips.filter((tip) => {
+    const matchesCategory = activeTipCategory === 'All tips' || tip.category === activeTipCategory
+    const matchesQuery = !normalizedQuery || `${tip.title} ${tip.summary} ${tip.prompt} ${tip.takeaway}`.toLowerCase().includes(normalizedQuery)
+    return matchesCategory && matchesQuery
+  })
   const nextObjective = objectives.find((objective) =>
     objective.lessons.some((lesson) => !progress.completedLessonIds.includes(lesson.id)),
   ) ?? objectives[0]
@@ -207,6 +218,33 @@ function App() {
     localStorage.removeItem(progressKey)
   }
 
+  async function copyTipPrompt(tipId: string, prompt: string) {
+    try {
+      await navigator.clipboard.writeText(prompt)
+      setCopiedTipId(tipId)
+      setCopyUnavailableTipId(null)
+      window.setTimeout(() => setCopiedTipId((current) => current === tipId ? null : current), 1800)
+    } catch {
+      const selectionField = document.createElement('textarea')
+      selectionField.value = prompt
+      selectionField.setAttribute('readonly', '')
+      selectionField.style.position = 'fixed'
+      selectionField.style.opacity = '0'
+      document.body.appendChild(selectionField)
+      selectionField.select()
+      const copied = document.execCommand('copy')
+      selectionField.remove()
+      if (copied) {
+        setCopiedTipId(tipId)
+        setCopyUnavailableTipId(null)
+        window.setTimeout(() => setCopiedTipId((current) => current === tipId ? null : current), 1800)
+      } else {
+        setCopiedTipId(null)
+        setCopyUnavailableTipId(tipId)
+      }
+    }
+  }
+
   return (
     <div className={`app-shell theme-${theme}`}>
       <div className="workspace">
@@ -242,8 +280,8 @@ function App() {
               <section className="field-hero">
                 <div className="field-hero-copy">
                   <div className="eyebrow"><span className="eyebrow-dot" /> COMMUNITY FIELD GUIDE <span className="hero-edition">GH-300 / 2026</span></div>
-                  <h1>GitHub Copilot,<br />understood in practice.</h1>
-                  <p>A practical guide to using AI-assisted development with judgment, context, and care.</p>
+                  <h1>GitHub Copilot,<br />used with purpose.</h1>
+                  <p>Practical tips, prompts, and workflows for the everyday work of building software.</p>
                   <div className="hero-workflow" role="img" aria-label="A development workflow from project context to Copilot assistance to developer review">
                     <span className="workflow-step"><span className="workflow-icon"><Files size={17} /></span><span className="workflow-label">CONTEXT</span></span>
                     <ArrowRight className="workflow-connector" size={15} />
@@ -298,6 +336,39 @@ function App() {
                   <div className="drill-source"><ShieldCheck size={15} /><span>Original practice, based on public documentation.</span></div>
                 </aside>
               </div>
+
+              <section className="tips-invitation">
+                <div className="tips-invitation-icon"><Sparkles size={20} /></div>
+                <div><span className="section-kicker">THE PRACTICAL LIBRARY</span><h2>Looking for a tip you can use right now?</h2><p>Browse prompt patterns and workflows for writing, testing, debugging, and reviewing code.</p></div>
+                <button className="text-action" onClick={() => navigate('tips')}>Explore tips <ArrowRight size={17} /></button>
+              </section>
+            </>
+          )}
+
+          {page === 'tips' && (
+            <>
+              <section className="page-intro tips-intro">
+                <div className="eyebrow"><span className="eyebrow-dot" /> COPILOT FIELD NOTES</div>
+                <h1>Small techniques. Better flow.</h1>
+                <p>Practical, original examples for prompting, inline suggestions, testing, debugging, and code review.</p>
+              </section>
+              <section className="tips-toolbar" aria-label="Filter tips by category">
+                <div className="tips-filter-list" role="group" aria-label="Tip category">
+                  {tipCategories.map((category) => <button key={category} className={`tips-filter ${activeTipCategory === category ? 'tips-filter-active' : ''}`} aria-pressed={activeTipCategory === category} onClick={() => setActiveTipCategory(category)}>{category}</button>)}
+                </div>
+                <span className="tips-count">{visibleTips.length} practical tips</span>
+              </section>
+              <section className="tips-grid" aria-label="Copilot tips and tricks">
+                {visibleTips.map((tip, index) => <article className="tip-entry" key={tip.id} style={{ animationDelay: `${index * 35}ms` }}>
+                  <div className="tip-entry-meta"><span>{tip.category}</span><span>{String(index + 1).padStart(2, '0')}</span></div>
+                  <h2>{tip.title}</h2>
+                  <p className="tip-summary">{tip.summary}</p>
+                  <div className="tip-prompt"><div className="tip-prompt-heading"><span>TRY THIS</span><button className={`copy-prompt ${copyUnavailableTipId === tip.id ? 'copy-prompt-unavailable' : ''}`} aria-label={copiedTipId === tip.id ? 'Prompt copied' : copyUnavailableTipId === tip.id ? 'Select prompt text to copy' : 'Copy prompt'} onClick={() => void copyTipPrompt(tip.id, tip.prompt)}>{copiedTipId === tip.id ? <Check size={14} /> : <Copy size={14} />}<span>{copiedTipId === tip.id ? 'Copied' : copyUnavailableTipId === tip.id ? 'Select text' : 'Copy'}</span></button></div><code>{tip.prompt}</code></div>
+                  <p className="tip-takeaway"><CheckCircle2 size={15} /><span>{tip.takeaway}</span></p>
+                </article>)}
+                {visibleTips.length === 0 && <div className="empty-state"><Search size={21} /><strong>No matching tips</strong><span>Try a different search or category.</span></div>}
+              </section>
+              <p className="tips-disclaimer">Examples are starting points, not guaranteed commands or official exam material. Adapt them to your editor, plan, and project, and verify generated changes.</p>
             </>
           )}
 
