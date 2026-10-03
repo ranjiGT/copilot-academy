@@ -508,6 +508,53 @@ html:has(.theme-dark),body:has(.theme-dark) { background: #181b16; }
 .theme-dark .workflow-connector { color: #a1a798; }
 .theme-dark .syllabus-icon,.theme-dark .syllabus-icon-green,.theme-dark .syllabus-icon-coral,.theme-dark .syllabus-icon-blue,.theme-dark .syllabus-icon-yellow,.theme-dark .syllabus-icon-mint,.theme-dark .syllabus-icon-violet { color: #202519; background: var(--acid); }
 
+.tips-invitation { display: grid; grid-template-columns: 42px minmax(0,1fr) auto; align-items: center; gap: 16px; margin-top: 42px; padding: 18px 0; border-top: 1px solid #bfc4b8; border-bottom: 1px solid var(--line); }
+.tips-invitation-icon { width: 34px; height: 34px; display: grid; place-items: center; color: var(--ink); background: var(--acid); }
+.tips-invitation h2 { margin-top: 5px; color: var(--ink); font-family: var(--display); font-size: 16px; font-weight: 600; }
+.tips-invitation p { margin-top: 4px; color: #70756c; font-size: 12px; line-height: 1.5; }
+.tips-invitation .text-action { margin-left: 12px; }
+.tips-intro { margin-bottom: 23px; }
+.tips-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 11px 0; border-top: 1px solid #bfc4b8; border-bottom: 1px solid var(--line); }
+.tips-filter-list { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.tips-filter { min-height: 31px; padding: 0 10px; color: #666b61; border: 1px solid transparent; border-radius: 2px; background: transparent; font-size: 11px; cursor: pointer; }
+.tips-filter:hover { color: var(--ink); background: #e8eadf; }
+.tips-filter-active { color: var(--ink); border-color: #aeb68d; background: #e9edcf; font-weight: 600; }
+.tips-count { flex: 0 0 auto; color: #777c72; font: 10px var(--mono); }
+.tips-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 28px; }
+.tip-entry { min-width: 0; padding: 20px 0 18px; border-bottom: 1px solid var(--line); animation: field-enter 300ms ease both; }
+.tip-entry-meta { display: flex; align-items: center; justify-content: space-between; color: #72776d; font: 9px var(--mono); text-transform: uppercase; }
+.tip-entry-meta > span:first-child { color: #626b3b; }
+.tip-entry h2 { margin-top: 9px; color: var(--ink); font-family: var(--display); font-size: 16px; line-height: 1.35; font-weight: 600; }
+.tip-summary { min-height: 40px; margin-top: 6px; color: #6d7269; font-size: 12px; line-height: 1.6; }
+.tip-prompt { display: grid; gap: 7px; margin-top: 12px; padding: 10px 12px; border-left: 3px solid var(--acid); background: #e9ebde; }
+.tip-prompt-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.tip-prompt-heading > span { color: #70766a; font: 9px var(--mono); letter-spacing: .5px; }
+.copy-prompt { display: inline-flex; align-items: center; gap: 5px; padding: 3px 5px; color: #656b5c; border: 1px solid transparent; border-radius: 2px; background: transparent; font: 9px var(--body); cursor: pointer; }
+.copy-prompt:hover { color: var(--ink); border-color: #bdc49c; background: rgb(255 254 250 / 65%); }
+.copy-prompt svg { color: #687a20; }
+.tip-prompt code { color: #30342b; font: 11px/1.6 var(--mono); overflow-wrap: anywhere; white-space: normal; }
+.tip-takeaway { display: flex; align-items: flex-start; gap: 7px; margin-top: 10px; color: #63695e; font-size: 11px; line-height: 1.5; }
+.tip-takeaway svg { flex: 0 0 15px; margin-top: 1px; color: #748619; }
+.tips-disclaimer { max-width: 850px; margin-top: 17px; color: #777c72; font-size: 10px; line-height: 1.6; }
+.theme-dark .tips-invitation { border-color: #3b4036; }
+.theme-dark .tips-invitation h2,.theme-dark .tip-entry h2 { color: var(--ink); }
+.theme-dark .tips-invitation p,.theme-dark .tip-summary,.theme-dark .tip-takeaway,.theme-dark .tips-disclaimer,.theme-dark .tips-count { color: #b3b8ac; }
+.theme-dark .tips-invitation-icon { color: #202519; }
+.theme-dark .tips-toolbar { border-color: #3b4036; }
+.theme-dark .tips-filter { color: #b8bdaf; }
+.theme-dark .tips-filter:hover { color: var(--ink); background: #292e23; }
+.theme-dark .tips-filter-active { color: var(--ink); border-color: #73832f; background: #343c23; }
+.theme-dark .tip-entry { border-color: #3b4036; }
+.theme-dark .tip-entry-meta { color: #a7ad9f; }
+.theme-dark .tip-entry-meta > span:first-child { color: #cedc91; }
+.theme-dark .tip-prompt { border-color: var(--acid); background: #2a3020; }
+.theme-dark .tip-prompt-heading > span { color: #aeb59b; }
+.theme-dark .copy-prompt { color: #c2c8b8; }
+.theme-dark .copy-prompt:hover { color: var(--ink); border-color: #6f7d37; background: #343a2c; }
+.theme-dark .copy-prompt svg { color: var(--acid); }
+.theme-dark .tip-prompt code { color: #e2e7d4; }
+.theme-dark .tip-takeaway svg { color: var(--acid); }
+
 @media (max-width: 850px) {
   .nav-item { font-size: 11px; }
   .syllabus-main strong { font-size: 13px; }
@@ -530,6 +577,21 @@ html:has(.theme-dark),body:has(.theme-dark) { background: #181b16; }
   .workflow-step { gap: 5px; }
   .workflow-label { font-size: 9px; }
   .syllabus-icon { width: 25px; height: 25px; }
+  .tips-invitation { grid-template-columns: 34px minmax(0,1fr); gap: 10px; margin-top: 30px; }
+  .tips-invitation-icon { width: 29px; height: 29px; }
+  .tips-invitation h2 { font-size: 14px; }
+  .tips-invitation p { font-size: 11px; }
+  .tips-invitation .text-action { grid-column: 2; justify-self: start; margin: 0; padding-left: 0; }
+  .tips-toolbar { align-items: flex-start; flex-direction: column; gap: 7px; }
+  .tips-filter-list { gap: 4px; }
+  .tips-filter { min-height: 30px; padding-inline: 8px; font-size: 10px; }
+  .tips-count { align-self: flex-end; }
+  .tips-grid { grid-template-columns: 1fr; }
+  .tip-entry { padding-block: 16px; }
+  .tip-entry h2 { font-size: 15px; }
+  .tip-summary { min-height: 0; font-size: 11px; }
+  .tip-prompt code { font-size: 10px; }
+  .tip-takeaway { font-size: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
