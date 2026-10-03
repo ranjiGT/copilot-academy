@@ -596,3 +596,164 @@ html:has(.theme-dark),body:has(.theme-dark) { background: #181b16; }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* A readable default scale for the full reference, not only the hero. */
+.brand { font-size: 18px; }
+.nav-item { font-size: 14px; }
+.nav-count { width: 21px; height: 21px; font-size: 12px; }
+.search-box input,.top-progress { font-size: 14px; }
+.search-box kbd { font-size: 12px; }
+.topbar { min-height: 78px; }
+.primary-nav { height: 78px; }
+.eyebrow,.section-kicker { font-size: 12px; }
+.hero-edition,.workflow-label { font-size: 11px; }
+.field-hero { padding-bottom: 38px; }
+.field-hero h1 { font-size: 48px; }
+.field-hero-copy > p { font-size: 17px; }
+.hero-progress-numbers > span { font-size: 13px; }
+.continue-band { padding-block: 20px; }
+.continue-index { font-size: 12px; }
+.continue-copy strong { font-size: 17px; }
+.continue-copy > span { font-size: 14px; }
+.text-action { font-size: 14px; }
+.syllabus-heading h2 { font-size: 24px; }
+.syllabus-heading > span { font-size: 14px; }
+.syllabus-row { min-height: 92px; }
+.syllabus-number { font-size: 15px; }
+.syllabus-icon { width: 32px; height: 32px; }
+.syllabus-main strong { font-size: 17px; }
+.syllabus-main > span { font-size: 14px; line-height: 1.55; }
+.syllabus-topics { font-size: 11px; }
+.syllabus-completion { font-size: 12px; }
+.drill-index,.drill-kicker { font-size: 12px; }
+.drill-rail h3 { font-size: 28px; }
+.drill-rail > p { font-size: 16px; }
+.drill-source { font-size: 12px; }
+.page-intro h1 { font-size: 40px; }
+.page-intro > p { font-size: 16px; }
+.selector-item { min-height: 62px; }
+.selector-title { font-size: 13px; }
+.selector-index,.selector-count { font-size: 11px; }
+.lesson-heading h2 { font-size: 27px; }
+.lesson-heading > p { font-size: 14px; }
+.lesson-heading > a,.lesson-list-header { font-size: 12px; }
+.lesson-row { padding-block: 17px; }
+.lesson-check { width: 25px; height: 25px; font-size: 10px; }
+.lesson-title-line h3 { font-size: 15px; }
+.lesson-duration { font-size: 11px; }
+.lesson-copy > p,.lesson-details > p,.reference-rail > p { font-size: 14px; }
+.lesson-example > span,.reference-rail > a { font-size: 11px; }
+.lesson-example code { font-size: 13px; }
+.reference-rail h3 { font-size: 19px; }
+.quiz-card-top,.question-type,.flashcard-toolbar,.flashcard-topline { font-size: 12px; }
+.quiz-card > h2 { font-size: 23px; }
+.answer-option { min-height: 54px; font-size: 14px; }
+.answer-letter { width: 26px; height: 26px; font-size: 11px; }
+.answer-explanation strong,.answer-explanation p,.quiz-footer > span { font-size: 13px; }
+.primary-button,.secondary-button { min-height: 42px; font-size: 14px; }
+.quiz-aside > strong,.flashcard-side-note > strong { font-size: 18px; }
+.quiz-aside > p,.flashcard-side-note > p { font-size: 14px; }
+.aside-stat { font-size: 13px; }
+.study-flashcard > strong { font-size: 28px; }
+.study-flashcard-flipped > strong { font-size: 20px; }
+.flashcard-hint { font-size: 13px; }
+.card-progress-item > span:nth-child(2) { font-size: 11px; }
+.summary-stat-label,.summary-stat-foot,.progress-detail-heading > span,.progress-row-count,.progress-detail-footer,.reset-button { font-size: 12px; }
+.summary-stat > strong { font-size: 30px; }
+.progress-row-title strong { font-size: 13px; }
+.page-footer { font-size: 11px; }
+.tips-invitation h2 { font-size: 19px; }
+.tips-invitation p { font-size: 14px; }
+.tips-filter { min-height: 36px; font-size: 13px; }
+.tips-count { font-size: 12px; }
+.tip-entry-meta { font-size: 11px; }
+.tip-entry h2 { font-size: 19px; }
+.tip-summary { min-height: 48px; font-size: 14px; }
+.tip-prompt-heading > span,.copy-prompt { font-size: 11px; }
+.tip-prompt code { font-size: 13px; }
+.tip-takeaway { font-size: 13px; }
+.tips-disclaimer { font-size: 12px; }
+
+@media (max-width: 950px) {
+  .nav-item { font-size: 12px; }
+  .search-box input { font-size: 13px; }
+}
+@media (max-width: 850px) {
+  .brand { font-size: 16px; }
+  .nav-item { font-size: 12px; }
+  .field-hero h1 { font-size: 42px; }
+  .field-hero-copy > p { font-size: 15px; }
+  .syllabus-main strong { font-size: 15px; }
+  .syllabus-main > span { font-size: 13px; }
+}
+@media (max-width: 700px) {
+  .topbar { min-height: 108px; }
+  .primary-nav { height: 45px; }
+  .brand { font-size: 15px; }
+  .nav-item { min-height: 42px; font-size: 12px; }
+  .search-box input { font-size: 12px; }
+  .field-hero { grid-template-columns: minmax(0,1fr) 112px; gap: 12px; }
+  .field-hero h1 { font-size: 34px; }
+  .field-hero-copy > p { font-size: 15px; }
+  .hero-progress .section-kicker { font-size: 10px; }
+  .hero-progress-numbers > strong { font-size: 31px; }
+  .hero-progress-numbers > span { font-size: 11px; }
+  .continue-index { font-size: 10px; }
+  .continue-copy strong { font-size: 14px; }
+  .continue-copy > span { font-size: 12px; }
+  .text-action { font-size: 12px; }
+  .syllabus-heading h2 { font-size: 20px; }
+  .syllabus-heading > span { font-size: 12px; }
+  .syllabus-row { min-height: 92px; }
+  .syllabus-number { font-size: 12px; }
+  .syllabus-icon { width: 27px; height: 27px; }
+  .syllabus-main strong { font-size: 15px; }
+  .syllabus-main > span { font-size: 14px; line-height: 1.5; }
+  .syllabus-completion { font-size: 11px; }
+  .drill-kicker,.drill-index { font-size: 11px; }
+  .drill-rail h3 { font-size: 22px; }
+  .drill-rail > p { font-size: 15px; }
+  .drill-source { font-size: 11px; }
+  .page-intro h1 { font-size: 32px; }
+  .page-intro > p { font-size: 15px; }
+  .selector-item { min-height: 56px; }
+  .selector-title { font-size: 12px; }
+  .lesson-heading h2 { font-size: 23px; }
+  .lesson-heading > p { font-size: 13px; }
+  .lesson-heading > a { font-size: 12px; }
+  .lesson-row { padding-block: 15px; }
+  .lesson-title-line h3 { font-size: 15px; }
+  .lesson-duration { font-size: 10px; }
+  .lesson-copy > p,.lesson-details > p,.reference-rail > p { font-size: 14px; }
+  .lesson-example code { font-size: 12px; }
+  .quiz-card > h2 { font-size: 20px; }
+  .answer-option { min-height: 54px; font-size: 14px; }
+  .quiz-footer > span { font-size: 12px; }
+  .primary-button,.secondary-button { min-height: 42px; font-size: 13px; }
+  .study-flashcard > strong { font-size: 24px; }
+  .study-flashcard-flipped > strong { font-size: 18px; }
+  .tip-entry h2 { font-size: 17px; }
+  .tip-summary { min-height: 0; font-size: 14px; }
+  .tip-prompt code { font-size: 13px; }
+  .tip-takeaway { font-size: 13px; }
+  .tips-filter { font-size: 12px; }
+}
+@media (max-width: 420px) {
+  .brand { font-size: 14px; }
+  .field-hero { grid-template-columns: minmax(0,1fr) 101px; gap: 8px; }
+  .field-hero h1 { font-size: 31px; }
+  .field-hero-copy > p { font-size: 14px; }
+  .hero-progress { padding-left: 7px; }
+  .hero-progress .section-kicker { font-size: 9px; letter-spacing: .5px; }
+  .hero-progress-numbers > strong { font-size: 27px; }
+  .hero-progress-numbers > span { font-size: 10px; }
+  .syllabus-heading h2 { font-size: 19px; }
+  .syllabus-main strong { font-size: 14px; }
+  .syllabus-main > span { font-size: 13px; }
+  .continue-copy strong { font-size: 13px; }
+  .continue-copy > span { font-size: 12px; }
+  .answer-option { font-size: 13px; }
+  .quiz-footer > span { font-size: 11px; }
+  .primary-button,.secondary-button { font-size: 12px; }
+  .progress-row-title strong { font-size: 12px; }
+}
