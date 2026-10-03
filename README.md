@@ -1,16 +1,85 @@
-# Copilot Academy
-
-A community-built field guide to using GitHub Copilot in everyday software development: practical prompts, coding workflows, tips and tricks, plus a dedicated GH-300 study path.
+<div align="center">
+	<h1>Copilot Academy</h1>
+	<p><strong>Learn. Practice. Build with AI.</strong></p>
+	<p>A community-built field guide to GitHub Copilot tips, coding workflows, and GH-300 study.</p>
+	<p>
+		<a href="https://ranjigt.github.io/copilot-academy/"><strong>Open the interactive academy</strong></a>
+		&nbsp;·&nbsp;
+		<a href="https://docs.github.com/en/copilot">Official Copilot docs</a>
+	</p>
+	<p>
+		<img src="https://img.shields.io/badge/Guide-Community--built-405c29?style=for-the-badge" alt="Community-built guide" />
+		<img src="https://img.shields.io/badge/Practice-Original%20content-294e63?style=for-the-badge" alt="Original practice content" />
+		<img src="https://img.shields.io/badge/Progress-Saved%20locally-8b513d?style=for-the-badge" alt="Progress saved locally" />
+	</p>
+</div>
 
 <p align="center">
-	<a href="https://github.com/ranjiGT/copilot-academy">
-		<img src="src/assets/copilot-academy-tips.png" alt="Copilot Academy overview with tips, study guide, progress, and practice navigation" width="100%" />
+	<a href="https://ranjigt.github.io/copilot-academy/">
+		<img src="src/assets/copilot-academy-tips.png" alt="Copilot Academy overview showing the syllabus, progress, and practice guide" width="100%" />
 	</a>
 </p>
 
-<p align="center"><em>A screenshot of the Copilot Academy learning experience.</em></p>
+<p align="center"><em>The Copilot Academy overview — open the live guide to explore the interactive version.</em></p>
+
+## On this page
+
+<p align="center">
+	<a href="#guide-at-a-glance">Guide at a glance</a> &nbsp;·&nbsp;
+	<a href="#workflow-cheat-sheet">Workflow cheat sheet</a> &nbsp;·&nbsp;
+	<a href="#chat-commands">Chat commands</a> &nbsp;·&nbsp;
+	<a href="#copilot-cheat-sheets">Full topic map</a> &nbsp;·&nbsp;
+	<a href="#run-locally">Run locally</a> &nbsp;·&nbsp;
+	<a href="#contributing">Contribute</a>
+</p>
 
 Copilot Academy is not affiliated with, endorsed by, or sponsored by GitHub or Microsoft.
+
+## Guide at a glance
+
+| Section | What you'll find | Start here |
+| --- | --- | --- |
+| **Tips & tricks** | Original prompt patterns and workflows for inline coding, tests, debugging, review, instructions, and agents. | [Open the interactive guide](https://ranjigt.github.io/copilot-academy/) |
+| **Study guide** | Short notes mapped to the six published GH-300 objective areas. | [Browse the guide](https://ranjigt.github.io/copilot-academy/) |
+| **Practice** | Original scenario questions with explanations; not recalled exam questions. | [Practice in the app](https://ranjigt.github.io/copilot-academy/) |
+| **Flashcards & progress** | Review concepts and track progress in this browser without an account. | [Open Copilot Academy](https://ranjigt.github.io/copilot-academy/) |
+
+GitHub Copilot and GH-300 are mentioned to describe the subject. Copilot Academy is an independent community project and is not affiliated with GitHub or Microsoft.
+
+## Workflow cheat sheet
+
+| Goal | Try this | Then verify |
+| --- | --- | --- |
+| Understand unfamiliar code | “Explain the flow through `@src/path/file.ts`; identify the key functions and cite the relevant files.” | Open the cited code and confirm the explanation matches it. |
+| Make a focused change | “Update the parser to accept ISO dates. Preserve the current API and add invalid-input tests.” | Inspect the diff and run the targeted tests. |
+| Debug a failure | “Given this error and test output, list likely causes and the smallest check to distinguish them. Don’t edit yet.” | Reproduce the cause with a focused check. |
+| Delegate a larger task | “Implement pagination. Keep the response envelope, add boundary tests, and report the checks you ran.” | Review every changed file and run project checks. |
+| Review code | “Review this diff for correctness, security, and missing tests. Return actionable findings; don’t rewrite it.” | Confirm findings independently before acting. |
+
+### Context cues
+
+| Cue | Useful for |
+| --- | --- |
+| `#file` / `@path/to/file` | Grounding a request in a specific file. |
+| `#selection` | Focusing on selected code or text. |
+| `#changes` | Asking about the current Git diff. |
+| `/` | Discovering commands available in the current Copilot chat surface. |
+
+Context markers and slash commands vary by editor and version. Use the current client’s picker and documentation as the source of truth.
+
+## Chat commands
+
+Common VS Code Copilot Chat commands include:
+
+| Command | Typical use |
+| --- | --- |
+| `/explain` | Ask for an explanation of selected or referenced code. |
+| `/fix` | Investigate or propose a fix for a problem. |
+| `/tests` | Generate or discuss tests for code. |
+| `/clear` | Start a fresh conversation for an unrelated task. |
+| `/help` | Discover commands available in the current chat surface. |
+
+Commands are client- and version-dependent. Type `/` in the chat input to see what your installation supports.
 
 ## Run locally
 
@@ -23,14 +92,7 @@ npm run dev
 
 Create a production build with `npm run build`. The generated site is static and can be hosted on GitHub Pages or another static host. The included GitHub Actions workflow deploys pushes to `main`; enable **Settings → Pages → Build and deployment → GitHub Actions** in the repository to publish it.
 
-## Explore the guide
-
-- **Tips & tricks:** practical examples for prompting, inline suggestions, tests, debugging, code review, repository instructions, and agent workflows.
-- **Study guide:** concise topics organized around the six published GH-300 objective areas.
-- **Practice:** original scenario questions with explanations. These are not official exam questions.
-- **Flashcards and progress:** browser-local study tools. No account or backend is required.
-
-The library currently starts with 18 practical tips. It is designed to grow as a community reference, not claim to list every Copilot capability. Features and availability change over time and may depend on your editor, plan, or organization settings; verify product behavior against current [GitHub Copilot documentation](https://docs.github.com/en/copilot).
+The interactive library currently starts with 18 practical tips. It is designed to grow as a community reference, not claim to list every Copilot capability. Features and availability change over time and may depend on your editor, plan, or organization settings; verify product behavior against current [GitHub Copilot documentation](https://docs.github.com/en/copilot).
 
 ## Quick Reference
 
