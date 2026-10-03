@@ -86,6 +86,69 @@ Add pagination to the search endpoint. Preserve the response envelope, add tests
 
 Browse the [full interactive tips library](https://ranjigt.github.io/copilot-academy/) for more examples covering inline suggestions, custom instructions, agent workflows, code review, and maintenance.
 
+## Copilot Cheat Sheets
+
+These are original quick references for common Copilot workflows. Feature names, controls, and availability can vary by editor, plan, and organization policy; check the linked official docs before relying on a specific control.
+
+### Choose a Copilot Surface
+
+| Task | A useful starting point |
+| --- | --- |
+| Complete a small, local piece of code | Inline suggestions; describe intent in nearby code and review the completion before accepting. |
+| Ask about selected code or request a focused edit | Chat or inline chat; provide the relevant selection, file, error, and constraints. |
+| Explore an unfamiliar repository | Ask for an explanation or investigation first; identify the files and evidence behind the answer. |
+| Make a coordinated multi-file change | Agent workflow; define the scope, boundaries, and checks, then inspect every changed file. |
+| Run a terminal-centered coding task | Copilot CLI; inspect proposed commands and follow your configured approval controls. |
+| Delegate repository work or request a pull-request review | GitHub-hosted Copilot agent or code review; treat the result as a proposal, not an approval. |
+
+### Prompt Recipe
+
+Build a request from five parts:
+
+1. **Goal:** the behavior or outcome you need.
+2. **Context:** relevant files, symbols, errors, or examples.
+3. **Constraints:** APIs, dependencies, style, or scope to preserve.
+4. **Acceptance checks:** tests or observable conditions that define done.
+5. **Output:** plan, explanation, patch, or review findings.
+
+Example:
+
+```text
+Update the date parser to accept ISO dates. Keep the existing API, add tests for invalid input, and report the test command and result.
+```
+
+For broad or risky work, ask for an investigation or plan before authorizing edits. For small work, make one bounded request and iterate from the result.
+
+### Repository Guidance Map
+
+| Artifact | Use it for | Keep in mind |
+| --- | --- | --- |
+| Repository instructions | Shared conventions and commands that should apply across tasks. | Keep guidance concise, specific, and current. |
+| Path-specific instructions | Rules that only apply to a folder or file type. | Check the supported matching syntax and client behavior. |
+| Prompt files | Repeatable, user-invoked task templates. | Keep inputs and expected output explicit. |
+| Custom agents | A named role with a focused description and bounded tools. | Grant only the tools needed for the role. |
+| Agent skills | Reusable procedures, examples, and supporting resources. | Make the trigger, steps, and validation easy to follow. |
+| MCP integrations | Connections to external tools or information. | Review provenance, permissions, and data access before enabling. |
+
+These customization mechanisms are not interchangeable, and support differs across VS Code, Copilot CLI, GitHub.com, and other surfaces. See [GitHub Copilot documentation](https://docs.github.com/en/copilot) and [VS Code agent customization](https://code.visualstudio.com/docs/agent-customization/overview) for current details.
+
+### Review Before You Keep
+
+- Read the complete diff, including generated and configuration files.
+- Check behavior against the request; do not assume plausible code is correct.
+- Run focused tests first, then relevant broader checks.
+- Review security, permissions, data handling, and dependency changes.
+- Treat review comments and generated tests as suggestions; verify them independently.
+- Keep a human decision-maker in the merge and release path.
+
+### Further Reading
+
+The following community collection helped inspire this README format. This project summarizes the topics in its own words and does not reproduce its sheet content:
+
+- [GitHub Copilot cheat sheet](https://github.com/sukurcf/resources/blob/main/cheatsheets/github-copilot-cheatsheet.html)
+- [Copilot Chat experience cheat sheet](https://github.com/sukurcf/resources/blob/main/cheatsheets/copilot-chat-experience-cheatsheet.html)
+- [GitHub Copilot workflow cheat sheet](https://github.com/sukurcf/resources/blob/main/cheatsheets/github-copilot-workflow-cheatsheet.html)
+
 ## Contributing
 
 Community contributions are welcome. Add focused, original tips that solve a real development task. A useful entry includes:
